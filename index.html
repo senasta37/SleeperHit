@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SleeperHit</title>
+<meta name="description" content="A free movie game: roll the reel, draft your cast and crew, and see if your movie becomes the next big hit.">
+<link rel="canonical" href="https://sleeperhitgame.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SleeperHit">
+<meta property="og:title" content="SleeperHit">
+<meta property="og:description" content="A free movie game: roll the reel, draft your cast and crew, and see if your movie becomes the next big hit.">
+<meta property="og:url" content="https://sleeperhitgame.pages.dev/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SleeperHit">
+<meta name="twitter:description" content="A free movie game: roll the reel, draft your cast and crew, and see if your movie becomes the next big hit.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20120%20120%22%3E%3Cg%20transform=%22rotate(-8%2060%2060)%22%3E%3Cmask%20id=%22mF%22%3E%3Crect%20width=%22120%22%20height=%22120%22%20fill=%22%23fff%22/%3E%3Ccircle%20cx=%228%22%20cy=%2260%22%20r=%228%22%20fill=%22%23000%22/%3E%3Ccircle%20cx=%22112%22%20cy=%2260%22%20r=%228%22%20fill=%22%23000%22/%3E%3C/mask%3E%3Crect%20x=%228%22%20y=%2232%22%20width=%22104%22%20height=%2256%22%20rx=%227%22%20fill=%22%23c4372c%22%20mask=%22url(%23mF)%22/%3E%3Cline%20x1=%2270%22%20y1=%2240%22%20x2=%2270%22%20y2=%2280%22%20stroke=%22%23faf7f2%22%20stroke-width=%222.5%22%20stroke-dasharray=%223%204%22%20opacity=%22.8%22/%3E%3Cpolygon%20points=%2238.0,42.0%2042.3,54.0%2055.1,54.4%2045.0,62.3%2048.6,74.6%2038.0,67.4%2027.4,74.6%2031.0,62.3%2020.9,54.4%2033.7,54.0%22%20fill=%22%23f2b632%22/%3E%3Ctext%20x=%2275%22%20y=%2265%22%20font-size=%2214%22%20fill=%22%23faf7f2%22%20font-family=%22Georgia,serif%22%20font-weight=%22700%22%3EHIT%3C/text%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600&family=Orbitron:wght@700;900&family=Creepster&family=Eater&family=Special+Elite&family=Great+Vibes&family=Bangers&family=Fredoka:wght@600;700&family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@1,800&family=Abril+Fatface&family=Rye&family=Black+Ops+One&family=Righteous&family=Bevan&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark;--bg:#0a0a0d;--card:rgba(20,20,26,.72);--tx:#f2ede4;--mu:#a39c8f;--ac:#ee6a5c;--bd:rgba(255,255,255,.13)}
+html{background:#050506}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 Georgia,'Times New Roman',serif}
+main{max-width:780px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:26px;margin:0;letter-spacing:.5px;display:flex;align-items:center;gap:10px}h1 span{color:var(--ac)}h1 .logo{flex:none}
+.sub{color:var(--mu);font-family:system-ui,sans-serif;font-size:14px;margin:2px 0 18px}
+.steps{display:flex;gap:6px;margin-bottom:18px;font-family:system-ui,sans-serif;font-size:12px;flex-wrap:wrap}
+.steps div{padding:4px 10px;border:1px solid var(--bd);border-radius:20px;color:var(--mu)}
+.steps .on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.poster{background:linear-gradient(135deg,var(--ac),#2b1d3a);color:#fff;border-radius:12px;padding:26px 20px;text-align:center;margin-bottom:16px}
+.poster h2{font-size:28px;margin:0 0 6px;text-transform:uppercase;letter-spacing:1.5px;line-height:1.15}
+.poster p{margin:0;font-family:system-ui,sans-serif;font-size:13px;opacity:.9}
+
+/* Genre-based title fonts */
+.poster h2.font-horror{font-family:Georgia,"Times New Roman",serif;letter-spacing:3px;text-shadow:0 0 8px #000,0 0 18px #5a0000;font-style:italic}
+.poster h2.font-action{font-family:Impact,Haettenschweiler,"Arial Black",sans-serif;letter-spacing:2px;font-weight:900;text-shadow:2px 2px 0 #000}
+.poster h2.font-scifi{font-family:"Segoe UI",system-ui,sans-serif;letter-spacing:4px;font-weight:300;text-transform:uppercase}
+.poster h2.font-romance{font-family:Georgia,"Palatino Linotype",serif;font-style:italic;letter-spacing:1px;font-weight:400;text-transform:none}
+.poster h2.font-comedy{font-family:"Trebuchet MS",system-ui,sans-serif;letter-spacing:1px;font-weight:700}
+.poster h2.font-thriller{font-family:Georgia,serif;letter-spacing:2px;text-shadow:0 0 6px #000}
+.poster h2.font-animation{font-family:"Comic Sans MS","Chalkboard SE",cursive;letter-spacing:1px;text-transform:none}
+.poster h2.font-fantasy{font-family:Georgia,"Times New Roman",serif;letter-spacing:2px;font-style:italic}
+.poster h2.font-drama{font-family:Georgia,serif;letter-spacing:1.5px}
+.poster h2.font-default{font-family:Georgia,serif;letter-spacing:1.5px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px;font-family:system-ui,sans-serif}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
+.stat small{color:var(--mu);display:block;font-size:12px}.stat b{font-size:20px}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:14px}
+.box h3{margin:0 0 8px;font-size:16px}
+.rev{border-top:1px solid var(--bd);padding:8px 0;font-size:15px}.rev:first-of-type{border-top:0}
+.rev small{display:block;color:var(--mu);font-family:system-ui,sans-serif}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:10px 18px;font:600 15px system-ui,sans-serif;cursor:pointer;margin-right:8px;margin-bottom:6px}
+.btn.alt{background:none;color:var(--tx);border:1px solid var(--bd)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.hist{font-family:system-ui,sans-serif;font-size:14px}
+.hist-item{width:100%;padding:10px 4px;border:0;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:12px;background:transparent;color:var(--tx);text-align:left;cursor:pointer;font:14px system-ui,sans-serif}.hist-item:hover{background:rgba(255,255,255,.045)}.hist-item small{display:block;color:var(--mu);font-size:11px;margin-top:3px}.hist-meta{text-align:right;color:var(--mu);font-size:12px;flex:none}
+.reel{position:relative;overflow:hidden;border:2px solid var(--ac);border-radius:12px;background:var(--card);padding:14px 0;margin:6px 0 14px;height:210px}
+.reel:before,.reel:after{content:"";position:absolute;top:0;bottom:0;width:50px;z-index:2;pointer-events:none}
+.reel:before{left:0;background:linear-gradient(90deg,var(--card),transparent)}
+.reel:after{right:0;background:linear-gradient(270deg,var(--card),transparent)}
+.mark{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--ac);z-index:3;opacity:.55}
+.strip{display:flex;gap:10px;will-change:transform;position:absolute;top:14px;left:0}
+.cv{flex:0 0 120px;height:180px;border-radius:8px;color:#fff;padding:0;overflow:hidden;position:relative;box-shadow:0 2px 8px #0005;background:#222}
+.cv img{width:100%;height:100%;object-fit:cover;display:block}
+.cv .info{position:absolute;bottom:0;left:0;right:0;padding:8px;background:linear-gradient(transparent,#000c);font-family:Georgia,serif}
+.cv b{font-size:13px;line-height:1.2;display:block}.cv small{font:10px system-ui,sans-serif;opacity:.85}
+.pa{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:14px;font-family:system-ui,sans-serif}
+.pa h3{font:600 18px Georgia,serif;margin:0 0 4px}
+.pa .overview{margin:0 0 12px;color:var(--mu);font-size:13px;line-height:1.45}
+.pa p{margin:0 0 10px;color:var(--mu);font-size:13px}
+.pa .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(176px,1fr));gap:8px}
+.pa .pr{display:flex;align-items:center;gap:10px}
+.pa .av{flex:none;position:relative;width:46px;height:46px;border-radius:50%;overflow:hidden;display:grid;place-items:center;font:700 15px system-ui,sans-serif;color:#fff;box-shadow:0 0 0 1px var(--bd)}
+.pa .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pa .tx{min-width:0}
+.pa button{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:9px 10px;color:var(--tx);cursor:pointer;text-align:left;font:14px system-ui,sans-serif}
+.pa button:hover:not(:disabled){border-color:var(--ac)}
+.pa button:disabled{opacity:.35;cursor:not-allowed}
+.pa button small{display:block;color:var(--mu);font-size:11px;margin-top:2px}
+.loading{text-align:center;padding:30px;color:var(--mu);font-family:system-ui,sans-serif}
+.thinking{text-align:center;padding:40px 20px;font-family:system-ui,sans-serif}
+.thinking .dots{font-size:28px;letter-spacing:4px;color:var(--ac);margin:12px 0}
+.thinking p{color:var(--mu);font-size:14px}
+.attr{font:11px system-ui,sans-serif;color:var(--mu);text-align:center;margin-top:30px;opacity:.7}
+.slot-choice{margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)}
+.slot-choice p{margin:0 0 8px;font-size:13px;color:var(--mu)}
+.slot-choice .row{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+
+/* ---------- Themed results screen ---------- */
+body{transition:background .6s ease}
+#bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .8s ease}
+#bgfx.on{opacity:1}
+#bgfx:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,transparent 45%,rgba(0,0,0,var(--vig,.35)) 100%)}
+main{position:relative;z-index:1}
+.btn{color:var(--acx,#fff)}
+.res{display:flex;flex-direction:column;align-items:center;gap:16px}
+.res>.rcard,.res>.rv{width:min(100%,640px)}
+.pwrap{position:relative;width:min(100%,400px);margin:4px 0 10px}
+.pcard{position:relative;aspect-ratio:5/8;container-type:inline-size;border-radius:5px;overflow:hidden;isolation:isolate;
+  box-shadow:0 34px 60px -24px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.14) inset;
+  animation:drop .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes drop{from{opacity:0;transform:translateY(26px) scale(.96)}to{opacity:1;transform:none}}
+.part{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.pscrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.55) 30%,rgba(0,0,0,.06) 52%,rgba(0,0,0,.2) 64%,rgba(0,0,0,.92) 100%)}
+.pov{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:5cqw 5cqw 7cqw;text-align:center;color:#fff}
+.pcast,.pbot,.prating{font-family:"Oswald","Bebas Neue","Arial Narrow","Franklin Gothic Medium",Impact,sans-serif;text-transform:uppercase}
+.pcast,.pbot{text-shadow:0 2px 10px rgba(0,0,0,.75)}
+.psyn{font:italic 2.7cqw/1.28 Georgia,"Times New Roman",serif;opacity:1;text-shadow:0 1px 4px #000;margin:2.1cqw 0 0;padding:2.5cqw 2.8cqw;background:rgba(0,0,0,.68);border:1px solid rgba(255,255,255,.25);border-radius:3px;white-space:normal;display:block;overflow:visible;overflow-wrap:anywhere;text-align:left;max-height:none}
+.mpa-logo{width:7cqw;max-width:25px;height:auto;max-height:7cqw;object-fit:contain;display:block;flex:none;margin:0;filter:grayscale(1) brightness(.12)}
+.prating .rtxt .mpa-brand{display:none}
+.plead{font-weight:500;font-size:3.35cqw;line-height:1.1;letter-spacing:.22em;padding-left:.22em;text-transform:uppercase}
+.psup{display:flex;justify-content:center;flex-wrap:wrap;gap:.7cqw 1.2em;font-weight:400;font-size:2.15cqw;letter-spacing:.16em;margin-top:1.3cqw;opacity:.95}
+.pmid{margin:auto 0;text-align:center}
+.ptag{font:italic 3.2cqw/1.35 Georgia,serif;text-shadow:0 1px 8px #000;padding:0 2cqw;margin-top:3cqw;text-transform:none}
+.ptitle{margin:0;line-height:1.04;word-break:break-word;overflow-wrap:anywhere;font-weight:400}
+.pdir{font-size:2.9cqw;letter-spacing:.32em;opacity:.92;text-align:center}
+.pdir b{font-weight:600}
+.pgen{font-size:2.6cqw;letter-spacing:.24em;opacity:.8;margin-top:1.2cqw;text-align:center}
+.prating{display:flex;align-items:stretch;width:100%;border:1px solid rgba(255,255,255,.88);border-radius:1px;margin-top:2cqw;background:rgba(0,0,0,.48);color:#fff;text-align:left;box-shadow:0 1px 8px rgba(0,0,0,.3);text-transform:none;min-height:0;overflow:hidden}
+.prating .rtag{display:flex;flex:0 0 20%;align-items:center;justify-content:center;padding:1.05cqw .7cqw;border-right:1px solid rgba(255,255,255,.88);font-family:Georgia,"Times New Roman",serif;font-weight:900;font-size:5.2cqw;line-height:.95;letter-spacing:-.055em;white-space:nowrap;color:#fff}
+.prating .rtxt{display:flex;flex:1;flex-direction:column;justify-content:center;gap:0;padding:0;min-width:0}
+.prating .rtxt b{display:block;font:900 2.15cqw/1.05 Arial,sans-serif;letter-spacing:.005em;color:#fff;text-align:center;padding:.85cqw 1cqw .7cqw;border-bottom:1px solid rgba(255,255,255,.8)}
+.prating .rtxt span{display:block;font:700 1.35cqw/1.15 Arial,sans-serif;text-transform:uppercase;text-align:center;color:#fff;opacity:1;padding:.65cqw 1cqw;overflow-wrap:anywhere}
+.pstamp{position:absolute;right:-12px;bottom:-16px;z-index:3;transform:rotate(-7deg);padding:7px 14px;border:3px solid var(--sc);color:var(--sc);
+  background:rgba(0,0,0,.82);border-radius:6px;font:800 15px/1.1 system-ui,sans-serif;letter-spacing:.5px;box-shadow:0 8px 20px -6px rgba(0,0,0,.6)}
+.rcard{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px 18px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.res h3{font-family:var(--tf);font-weight:400;font-size:var(--h3s,20px);letter-spacing:.5px;margin:0 0 10px;line-height:1.15}
+.money{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-family:system-ui,sans-serif;margin-bottom:14px}
+.money small{display:block;color:var(--mu);font-size:12px}.money b{font-size:21px}
+.money .pos b{color:#3ecf7a}.money .neg b{color:#ff6b5e}
+.meter{display:grid;grid-template-columns:70px 1fr 44px;gap:10px;align-items:center;font:14px system-ui,sans-serif;margin-top:8px}
+.meter i{display:block;height:8px;border-radius:8px;background:var(--bd);overflow:hidden}
+.meter u{display:block;height:100%;background:var(--ac);border-radius:8px}
+.vline{margin:12px 0 0;font:15px/1.4 system-ui,sans-serif;color:var(--tx)}
+.quality-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.quality-level{font:700 25px/1.1 system-ui,sans-serif;color:var(--ac)}
+.quality-sub{font:13px system-ui,sans-serif;color:var(--mu);margin-top:4px}
+.breakdown-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 0;border-top:1px solid var(--bd);font:14px/1.35 system-ui,sans-serif}
+.breakdown-row:first-of-type{border-top:0}
+.breakdown-row .impact{font:800 18px/1 system-ui,sans-serif;letter-spacing:2px;min-width:42px;text-align:right}
+.breakdown-row .impact.pos{color:#3ecf7a}.breakdown-row .impact.neg{color:#ff6b5e}.breakdown-row .impact.neu{color:var(--mu)}
+.plot{margin:0;line-height:1.75;font-size:15px;color:var(--mu)}
+.synopsis-card{max-width:640px;width:100%}
+.rv{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.rv .q{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:14.5px;line-height:1.55}
+.rv .q .st{color:var(--ac);letter-spacing:2px;font-size:15px;display:block;margin-bottom:6px}
+.rv .q small{display:block;margin-top:8px;color:var(--mu);font-family:system-ui,sans-serif;font-size:12px}
+.bubs{display:flex;flex-direction:column}
+.bub{max-width:88%;padding:9px 13px;border-radius:16px 16px 16px 4px;background:var(--bd);font:14px/1.4 system-ui,sans-serif;margin:5px 0;align-self:flex-start}
+.bub:nth-child(even){align-self:flex-end;border-radius:16px 16px 4px 16px}
+.crow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-top:1px solid var(--bd);font:14px system-ui,sans-serif}
+.crow:first-of-type{border-top:0}
+.crow span{color:var(--mu)}.crow b{text-align:right}.crow small{display:block;color:var(--mu);font-weight:400;font-size:11.5px}
+@media (prefers-reduced-motion:reduce){.pcard{animation:none}body,#bgfx{transition:none}}
+</style>
+</head>
+<body>
+<div id="bgfx"></div>
+<main>
+  <h1><svg class="logo" viewBox="2 22 116 76" width="54" height="35" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="rotate(-8 60 60)"><mask id="mTk"><rect width="120" height="120" fill="#fff"/><circle cx="8" cy="60" r="8" fill="#000"/><circle cx="112" cy="60" r="8" fill="#000"/></mask><rect x="8" y="32" width="104" height="56" rx="7" style="fill:var(--ac)" mask="url(#mTk)"/><line x1="70" y1="40" x2="70" y2="80" stroke="#faf7f2" stroke-width="2.5" stroke-dasharray="3 4" opacity=".8"/><polygon points="38.0,42.0 42.3,54.0 55.1,54.4 45.0,62.3 48.6,74.6 38.0,67.4 27.4,74.6 31.0,62.3 20.9,54.4 33.7,54.0" fill="#f2b632"/><text x="75" y="65" font-size="14" fill="#faf7f2" font-family="Georgia,serif" font-weight="700">HIT</text></g></svg><div>Sleeper<span>Hit</span></div></h1>
+  <p class="sub">Roll the reel, draft your cast and crew, and see if your movie becomes the next big hit.</p>
+  <div class="steps" id="steps"></div>
+  <div id="app"><div class="loading">Loading popular movies from TMDB…</div></div>
+  <div class="box" style="margin-top:28px"><h3>Past movies</h3><div class="hist" id="hist"></div></div>
+  <p class="attr">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+</main>
+
+<script>
+const BASE = "/api/tmdb";
+const IMG = "https://image.tmdb.org/t/p/w185";
+const CARD_W = 130; // 120px card + 10px gap
+
+const GENRE_MAP = {
+  28:"Action",12:"Adventure",16:"Animation",35:"Comedy",80:"Crime",
+  99:"Documentary",18:"Drama",10751:"Family",14:"Fantasy",36:"History",
+  27:"Horror",10402:"Music",9648:"Mystery",10749:"Romance",878:"Sci-Fi",
+  10770:"TV Movie",53:"Thriller",10752:"War",37:"Western"
+};
+
+// ---------- Expanded genre vocab ----------
+// Each sub-genre has a parent (for plot/title/budget/font lookups) and a regex
+// tested against TMDB keywords (strong signal) and title+overview (weak signal).
+const SUB = {
+  // Action / Crime
+  "Superhero":{p:"Action", r:/superhero|super hero|superpower|super power|comic book|based on comic|marvel|dc comics|caped|masked hero/},
+  "Vigilante":{p:"Crime", r:/vigilante|crime ?fighter|taking the law|one-man army|masked (man|hero|avenger)/},
+  "Cop":{p:"Crime", r:/\bpolice\b|\bcops?\b|detective|\bnypd\b|\blapd\b|sheriff|law enforcement|\bfbi\b|\bprecinct\b|inspector/},
+  "Buddy":{p:"Comedy", r:/buddy|odd couple|mismatched|unlikely (friend|duo|pair|partners?)|\bduo\b|partners/},
+  "Martial Arts":{p:"Action", r:/martial art|kung fu|karate|samurai|ninja|judo|wushu|dojo/},
+  "Spy":{p:"Thriller", r:/\bspy\b|\bspies\b|secret agent|espionage|\bcia\b|\bmi6\b|undercover agent|double agent/},
+  "Heist":{p:"Crime", r:/heist|robbery|bank robber|burglar|safecrack|casino|steal(ing)? (a|the)/},
+  "Car Chase":{p:"Action", r:/car chase|street rac|illegal rac|getaway|drag rac|\bdriver\b|muscle car/},
+  "Disaster":{p:"Action", r:/disaster|earthquake|tsunami|volcano|asteroid|hurricane|tornado|flood|sinking/},
+  "Revenge":{p:"Action", r:/revenge|vengeance|avenge|payback|vendetta/},
+  "Hitman":{p:"Action", r:/hitman|hit man|assassin|contract killer|bounty hunter|mercenary/},
+  "Military":{p:"Action", r:/military|soldier|special forces|navy seal|commando|marines?\b|mercenar/},
+  "Anti-Hero":{p:"Drama", r:/anti-?hero|antihero|morally (gray|grey|ambiguous)|rogue|outlaw/},
+  "Hostage":{p:"Thriller", r:/hostage|kidnap|abduct|ransom|siege/},
+  "Mafia":{p:"Crime", r:/mafia|gangster|mobster|organized crime|crime family|cartel|\bmob\b|drug lord/},
+  "Noir":{p:"Crime", r:/film noir|\bnoir\b|neo-noir|femme fatale|private (eye|investigator)|hard-?boiled/},
+  "Prison":{p:"Drama", r:/prison|inmate|jail|escape from|penitentiary|incarcerat/},
+  "Courtroom":{p:"Drama", r:/courtroom|trial\b|lawyer|attorney|legal drama|\bjury\b|\bjudge\b/},
+  // Thriller / Mystery
+  "Serial Killer":{p:"Thriller", r:/serial kill|killer|murderer|manhunt|slayer/},
+  "Whodunit":{p:"Mystery", r:/whodunit|murder mystery|murder investigation|detective|who killed|clues/},
+  "Conspiracy":{p:"Thriller", r:/conspiracy|cover-?up|corrupt|government secret|cabal|coup/},
+  "Psychological":{p:"Thriller", r:/psycholog|paranoi|mind game|unreliable narrator|obsess|madness|delusion/},
+  "Survival":{p:"Thriller", r:/survival|stranded|wilderness|lost at sea|trapped|castaway|desert island/},
+  "Political":{p:"Drama", r:/politic|election|president|senator|campaign|white house|diplomat|government/},
+  // Sci-Fi
+  "Time Travel":{p:"Sci-Fi", r:/time travel|time loop|time machine|timeline|paradox|alternate (timeline|reality)/},
+  "Space":{p:"Sci-Fi", r:/outer space|space (travel|station|ship|mission)|astronaut|spaceship|galaxy|planet|starship|nasa/},
+  "Alien":{p:"Sci-Fi", r:/alien|extraterrestrial|\bufo\b|first contact|invasion/},
+  "Dystopian":{p:"Sci-Fi", r:/dystopia|totalitarian|oppressive|police state|authoritarian regime/},
+  "Post-Apocalyptic":{p:"Sci-Fi", r:/post-?apocalyp|apocalypse|wasteland|end of the world|after the (war|collapse|outbreak)/},
+  "Cyberpunk":{p:"Sci-Fi", r:/cyberpunk|cyborg|android|artificial intelligence|\bai\b|robot|hacker|virtual reality|simulation|neon/},
+  "Monster":{p:"Sci-Fi", r:/monster|kaiju|giant (creature|beast)|creature feature|godzilla|mutant|beast/},
+  "Superpowers":{p:"Sci-Fi", r:/telekines|telepath|mutant|psychic|gifted|special abilit|supernatural power/},
+  // Horror
+  "Zombie":{p:"Horror", r:/zombie|undead|outbreak|infected|walking dead|plague/},
+  "Slasher":{p:"Horror", r:/slasher|masked killer|stalker|campground|summer camp killer|gore/},
+  "Supernatural":{p:"Horror", r:/supernatural|ghost|demon|possess|exorcis|occult|curse|haunt|spirit|witch/},
+  "Haunted House":{p:"Horror", r:/haunted|haunting|poltergeist|old house|creepy house|new home/},
+  "Found Footage":{p:"Horror", r:/found footage|handheld|mockumentary|camcorder/},
+  "Creature Feature":{p:"Horror", r:/shark|spider|giant snake|creature|werewolf|vampire|killer animal|crocodile/},
+  // Comedy
+  "Rom-Com":{p:"Romance", r:/romantic comedy|rom-?com|meet-?cute|wedding|fake (relationship|dating|boyfriend|girlfriend)/},
+  "Dark Comedy":{p:"Comedy", r:/dark comedy|black comedy|dark humor|dark humour|morbid|deadpan/},
+  "Slapstick":{p:"Comedy", r:/slapstick|goofy|zany|screwball|absurd|farce/},
+  "Satire":{p:"Comedy", r:/satir|spoof|send-?up|mockery/},
+  "Parody":{p:"Comedy", r:/parody|spoof|mock(ing)?/},
+  "Road Trip":{p:"Comedy", r:/road trip|road movie|cross-?country|roadtrip/},
+  "Stoner":{p:"Comedy", r:/stoner|marijuana|weed|cannabis|party|hangover|frat/},
+  "Coming-of-Age":{p:"Drama", r:/coming of age|coming-of-age|teenager|adolescen|growing up|first love|puberty/},
+  "High School":{p:"Comedy", r:/high school|prom|teen|cheerleader|college|campus|freshman|graduation/},
+  "Underdog":{p:"Drama", r:/underdog|against all odds|rise to fame|nobody|misfit|ragtag|unlikely hero/},
+  "Sports":{p:"Drama", r:/sport|boxing|football|basketball|baseball|soccer|hockey|racing|coach|champion|tournament|olympic/},
+  "Biopic":{p:"Drama", r:/biograph|biopic|based on (a )?true story|true story|real life|historical figure/},
+  "Musical":{p:"Music", r:/musical|singer|band\b|concert|rock star|song|broadway|composer|dance|orchestra/},
+  "Holiday":{p:"Family", r:/christmas|holiday|thanksgiving|halloween|new year|santa/},
+  // Drama / Romance / Family
+  "Family Drama":{p:"Drama", r:/family|siblings?|mother|father|parent|reunion|dysfunctional|estranged/},
+  "Tearjerker":{p:"Drama", r:/grief|loss|terminal|cancer|dying|death of|funeral|heartbreak|sacrifice|tragedy/},
+  "Forbidden Love":{p:"Romance", r:/forbidden love|star-?crossed|affair|secret relationship|love triangle|doomed/},
+  "Period Piece":{p:"Drama", r:/period (drama|piece)|victorian|regency|19th century|18th century|world war|1920s|1930s|1950s|1960s|1970s|1980s/},
+  // Adventure / Fantasy / Animation
+  "Pirate":{p:"Adventure", r:/pirate|buccaneer|treasure|high seas|caribbean|shipwreck/},
+  "Treasure Hunt":{p:"Adventure", r:/treasure hunt|treasure map|lost city|artifact|relic|archaeolog|ancient/},
+  "Fairy Tale":{p:"Fantasy", r:/fairy tale|fairytale|princess|prince|kingdom|castle|enchant|storybook/},
+  "Magic":{p:"Fantasy", r:/magic|wizard|sorcer|spell|witch|mage|potion|warlock/},
+  "Dragons":{p:"Fantasy", r:/dragon|dungeon|quest|elf|dwarf|orc|sword and sorcery|medieval/},
+  "Talking Animals":{p:"Animation", r:/talking animal|anthropomorphic|animal (friends|characters)|puppy|kitten|zoo|farm animal/},
+  "Toys Come Alive":{p:"Animation", r:/toy|doll|stuffed|plush|imaginary friend|living toy/},
+  "Western":{p:"Western", r:/western|cowboy|wild west|outlaw|frontier|saloon|gunslinger|sheriff of/},
+  "Epic War":{p:"War", r:/world war|battle|soldier|trench|frontline|invasion|resistance|wartime/},
+  "Heist Gone Wrong":{p:"Crime", r:/double-?cross|betray|gone wrong|botched|setup|framed/},
+  "Mentor":{p:"Drama", r:/mentor|teacher|student|apprentice|master and|protege|guru/},
+  "Fish Out of Water":{p:"Comedy", r:/fish out of water|culture clash|small town|big city|stranger in|visits? (a )?(foreign|new)/}
+};
+const FALLBACK = {
+  Action:["Revenge","Anti-Hero","Hitman","Military"],
+  Adventure:["Treasure Hunt","Survival","Pirate"],
+  Animation:["Talking Animals","Fairy Tale","Underdog"],
+  Comedy:["Slapstick","Satire","Dark Comedy","Fish Out of Water"],
+  Crime:["Noir","Mafia","Heist","Anti-Hero"],
+  Drama:["Family Drama","Tearjerker","Underdog","Anti-Hero"],
+  Fantasy:["Magic","Fairy Tale","Dragons"],
+  Horror:["Supernatural","Slasher","Psychological"],
+  Mystery:["Whodunit","Noir","Psychological"],
+  Romance:["Rom-Com","Forbidden Love","Coming-of-Age"],
+  "Sci-Fi":["Dystopian","Space","Cyberpunk","Time Travel"],
+  Thriller:["Conspiracy","Psychological","Survival","Spy"],
+  War:["Epic War","Military","Survival"],
+  Western:["Western","Revenge","Anti-Hero"],
+  History:["Period Piece","Biopic","Political"],
+  Family:["Holiday","Talking Animals","Underdog"],
+  Music:["Musical","Biopic","Underdog"]
+};
+// Budget (in $M) overrides for specific tags; others fall back to the parent genre.
+const GB_TAG = {
+  "Superhero":190,"Space":150,"Monster":140,"Disaster":130,"Dragons":130,"Cyberpunk":110,
+  "Spy":105,"Martial Arts":60,"Car Chase":110,"Heist":70,"Cop":65,"Buddy":55,"Musical":50,
+  "Found Footage":6,"Slasher":15,"Haunted House":18,"Stoner":25,"Coming-of-Age":18,"Biopic":35,
+  "Courtroom":30,"Prison":28,"Noir":25,"Whodunit":32
+};
+// Title nouns for tags (mixed with the parent genre's nouns)
+const TAG_NO = {
+  "Superhero":["Legion","Vigil","Guardian","Ascendant","Origin"],
+  "Vigilante":["Justice","Mask","Reckoning","Night Watch"],
+  "Cop":["Precinct","Badge","Patrol","Beat","Stakeout"],
+  "Buddy":["Partners","Odd Couple","Backup","Two of a Kind"],
+  "Heist":["Job","Vault","Score","Inside Man"],
+  "Spy":["Cipher","Asset","Defector","Dead Drop"],
+  "Martial Arts":["Fist","Dojo","Dragon","Iron Palm"],
+  "Zombie":["Dead","Outbreak","Horde","Patient Zero"],
+  "Time Travel":["Loop","Paradox","Yesterday","Tomorrow Again"],
+  "Musical":["Song","Encore","Stage","Overture"],
+  "Mafia":["Family","Syndicate","Made Men","Underboss"],
+  "Pirate":["Tide","Plunder","Black Flag","Treasure"],
+  "Rom-Com":["Mix-Up","Plus One","Meet-Cute","Wedding Crashers"],
+  "Road Trip":["Detour","Mile Marker","Backseat","Exit 9"],
+  "Space":["Orbit","Void","Station","Event Horizon"],
+  "Magic":["Spell","Grimoire","Academy","Charm"],
+  "Sports":["Comeback","Final Round","Underdog","Overtime"],
+  "Car Chase":["Redline","Nitro","Getaway","Overdrive"],
+  "Haunted House":["Residence","Manor","Foundation","Attic"],
+  "Supernatural":["Possession","Vigil","Séance","Curse"]
+};
+const parentOf = n => (SUB[n] && SUB[n].p) || n;
+
+function deriveTags(m, kws) {
+  const kwText = kws.join(" | ").toLowerCase();
+  const txt = ((m.title || "") + " " + (m.overview || "")).toLowerCase();
+  const base = new Set([m.g1, m.g2]);
+  const scored = [];
+  for (const [name, def] of Object.entries(SUB)) {
+    if (base.has(name)) continue;
+    let s = 0;
+    if (def.r.test(kwText)) s += 3;
+    if (def.r.test(txt)) s += 1;
+    if (!s) continue;
+    if (base.has(def.p)) s += 1; // fits one of the movie's real genres
+    scored.push([name, s + Math.random() * 0.6]);
+  }
+  scored.sort((a, b) => b[1] - a[1]);
+  const out = scored.slice(0, 2).map(x => x[0]);
+  // Not enough signal? add flavour tags that fit the movie's main genre
+  if (out.length < 2) {
+    const fb = (FALLBACK[m.g1] || FALLBACK.Drama).filter(t => !out.includes(t) && !base.has(t));
+    while (out.length < 2 && fb.length) out.push(fb.splice(Math.floor(Math.random() * fb.length), 1)[0]);
+  }
+  return out;
+}
+
+const STEPS = ["Director","Lead (1st)","2nd Billed","3rd Billed","4th Billed","Genre 1","Genre 2","Rating"];
+const R = a => a[Math.floor(Math.random()*a.length)];
+const rn = (a,b) => Math.floor(a + Math.random()*(b-a+1));
+
+let pool = [];
+let S = null;
+let hist = [];
+try { hist = JSON.parse(localStorage.getItem("bditwhist") || "[]"); } catch(e){}
+
+function person(name, billingBoost = 0, fromMovie = "", sourceGenres = [], photo = null, personId = null) {
+  // Personality leans toward the movie they were drafted from; filmography genres are enriched when TMDB data is available.
+  const fav = sourceGenres.length ? R(sourceGenres) : R(Object.values(GENRE_MAP));
+  return {
+    name,
+    id: personId || null,
+    skill: Math.min(10, rn(5,10) + billingBoost),
+    fame: Math.min(10, rn(4,10) + billingBoost),
+    fav,
+    genreHistory: [...new Set(sourceGenres)],
+    genreExperience: sourceGenres.reduce((counts, genre) => { counts[genre] = Math.max(1, counts[genre] || 0); return counts; }, {}),
+    from: fromMovie || "",
+    photo: photo || null
+  };
+}
+
+const CAREER_GENRE_CACHE_KEY = "sleeperhitCareerGenres_v3";
+let careerGenreCache = {};
+try { careerGenreCache = JSON.parse(localStorage.getItem(CAREER_GENRE_CACHE_KEY) || "{}"); } catch(e) {}
+async function enrichPersonGenreHistory(person) {
+  if (!person || !person.id || DEMO) return;
+  const id = String(person.id);
+  if (careerGenreCache[id] && !Array.isArray(careerGenreCache[id]) && Object.keys(careerGenreCache[id]).length) {
+    const counts = careerGenreCache[id];
+    person.genreExperience = { ...(person.genreExperience || {}) };
+    for (const [genre, count] of Object.entries(counts)) person.genreExperience[genre] = Math.max(person.genreExperience[genre] || 0, Number(count) || 0);
+    person.genreHistory = [...new Set([...(person.genreHistory || []), ...Object.keys(counts)])];
+    return;
+  }
+  try {
+    const credits = await fetchJSON(`${BASE}/person/${encodeURIComponent(id)}/movie_credits?language=en-US`);
+    const all = [...(credits.cast || []), ...(credits.crew || [])].slice(0, 150);
+    const counts = {};
+    for (const movie of all) {
+      for (const genreName of [...new Set((movie.genre_ids || []).map(gid => GENRE_MAP[gid]).filter(Boolean))]) {
+        counts[genreName] = (counts[genreName] || 0) + 1;
+      }
+    }
+    const genreNames = Object.keys(counts);
+    if (genreNames.length) {
+      careerGenreCache[id] = counts;
+      try { localStorage.setItem(CAREER_GENRE_CACHE_KEY, JSON.stringify(careerGenreCache)); } catch(e) {}
+      person.genreExperience = { ...(person.genreExperience || {}) };
+      for (const [genre, count] of Object.entries(counts)) person.genreExperience[genre] = Math.max(person.genreExperience[genre] || 0, count);
+      person.genreHistory = [...new Set([...(person.genreHistory || []), ...genreNames])];
+    }
+  } catch(e) {
+    // The source movie's genres/tags remain as a graceful fallback if TMDB is unavailable.
+  }
+}
+
+async function fetchJSON(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("TMDB error " + res.status);
+  return res.json();
+}
+
+// ---------- Offline demo mode ----------
+// Used automatically when TMDB can't be reached (e.g. inside a sandboxed preview).
+let DEMO = false;
+const DEMO_MOVIES = [
+  {t:"Rush Hour",y:1998,g:["Action","Comedy","Crime"],d:"Brett Ratner",c:["Jackie Chan","Chris Tucker","Tom Wilkinson","Ken Leung"],r:"PG-13",k:["buddy cop","martial arts","police","los angeles","kidnapping"],o:"A by-the-book Hong Kong detective and a fast-talking LAPD cop are forced together to rescue a kidnapped diplomat's daughter."},
+  {t:"Spider-Man",y:2002,g:["Action","Adventure","Sci-Fi"],d:"Sam Raimi",c:["Tobey Maguire","Willem Dafoe","Kirsten Dunst","James Franco"],r:"PG-13",k:["superhero","based on comic","vigilante","new york city","teenager"],o:"A shy teenager gains spider-like powers and has to decide what kind of hero his city needs."},
+  {t:"The Dark Knight",y:2008,g:["Action","Crime","Drama"],d:"Christopher Nolan",c:["Christian Bale","Heath Ledger","Aaron Eckhart","Michael Caine"],r:"PG-13",k:["superhero","vigilante","organized crime","based on comic","chaos"],o:"A masked vigilante faces a criminal mastermind who wants to push Gotham into chaos."},
+  {t:"Inception",y:2010,g:["Action","Sci-Fi","Adventure"],d:"Christopher Nolan",c:["Leonardo DiCaprio","Joseph Gordon-Levitt","Elliot Page","Tom Hardy"],r:"PG-13",k:["heist","dream","subconscious","espionage"],o:"A thief who steals secrets from dreams is offered one last job: planting an idea instead of taking one."},
+  {t:"Get Out",y:2017,g:["Horror","Mystery","Thriller"],d:"Jordan Peele",c:["Daniel Kaluuya","Allison Williams","Bradley Whitford","Catherine Keener"],r:"R",k:["psychological","racism","hypnosis","paranoia"],o:"A young man visiting his girlfriend's family estate slowly realizes the warm welcome hides something sinister."},
+  {t:"Superbad",y:2007,g:["Comedy"],d:"Greg Mottola",c:["Jonah Hill","Michael Cera","Christopher Mintz-Plasse","Bill Hader"],r:"R",k:["high school","teenager","party","friendship"],o:"Two best friends try to score alcohol for a party before graduation splits them up."},
+  {t:"The Notebook",y:2004,g:["Romance","Drama"],d:"Nick Cassavetes",c:["Ryan Gosling","Rachel McAdams","James Garner","Gena Rowlands"],r:"PG-13",k:["star-crossed lovers","love triangle","loss","period drama"],o:"A summer romance between two young people from different worlds echoes across decades."},
+  {t:"Mad Max: Fury Road",y:2015,g:["Action","Adventure","Sci-Fi"],d:"George Miller",c:["Tom Hardy","Charlize Theron","Nicholas Hoult","Hugh Keays-Byrne"],r:"R",k:["post-apocalyptic","car chase","dystopia","desert"],o:"In a wasteland ruled by a warlord, a drifter helps a rebel soldier and her passengers flee across the desert."},
+  {t:"Parasite",y:2019,g:["Comedy","Thriller","Drama"],d:"Bong Joon Ho",c:["Song Kang-ho","Lee Sun-kyun","Cho Yeo-jeong","Choi Woo-shik"],r:"R",k:["dark comedy","class","satire","con artist"],o:"A poor family schemes its way into the lives of a wealthy household, with consequences nobody planned."},
+  {t:"The Godfather",y:1972,g:["Drama","Crime"],d:"Francis Ford Coppola",c:["Marlon Brando","Al Pacino","James Caan","Robert Duvall"],r:"R",k:["mafia","organized crime","family","gangster"],o:"The aging head of a crime dynasty hands control to his reluctant youngest son."},
+  {t:"Toy Story",y:1995,g:["Animation","Comedy","Family"],d:"John Lasseter",c:["Tom Hanks","Tim Allen","Don Rickles","Jim Varney"],r:"G",k:["toy","friendship","buddy","rivalry"],o:"A cowboy doll's place as a boy's favorite toy is threatened by a flashy new space ranger."},
+  {t:"Jurassic Park",y:1993,g:["Adventure","Sci-Fi","Thriller"],d:"Steven Spielberg",c:["Sam Neill","Laura Dern","Jeff Goldblum","Richard Attenborough"],r:"PG-13",k:["dinosaur","theme park","survival","creature"],o:"A tour of a cloned-dinosaur theme park turns into a fight to survive when the security systems fail."},
+  {t:"The Conjuring",y:2013,g:["Horror","Mystery","Thriller"],d:"James Wan",c:["Vera Farmiga","Patrick Wilson","Lili Taylor","Ron Livingston"],r:"R",k:["haunted house","supernatural","exorcism","based on true story"],o:"Paranormal investigators help a family terrorized by a dark presence in their new farmhouse."},
+  {t:"Top Gun: Maverick",y:2022,g:["Action","Drama"],d:"Joseph Kosinski",c:["Tom Cruise","Miles Teller","Jennifer Connelly","Jon Hamm"],r:"PG-13",k:["military","fighter pilot","sequel","mentor"],o:"A veteran test pilot returns to train a squad of young graduates for a near-impossible mission."},
+  {t:"Interstellar",y:2014,g:["Sci-Fi","Adventure","Drama"],d:"Christopher Nolan",c:["Matthew McConaughey","Anne Hathaway","Jessica Chastain","Michael Caine"],r:"PG-13",k:["space","astronaut","time travel","wormhole","dystopia"],o:"As Earth fails, a former pilot leads a crew through a wormhole in search of a new home for humanity."},
+  {t:"Bridesmaids",y:2011,g:["Comedy","Romance"],d:"Paul Feig",c:["Kristen Wiig","Maya Rudolph","Rose Byrne","Melissa McCarthy"],r:"R",k:["wedding","friendship","rivalry"],o:"A maid of honor's life unravels as she competes with a rival to plan her best friend's wedding."},
+  {t:"John Wick",y:2014,g:["Action","Thriller","Crime"],d:"Chad Stahelski",c:["Keanu Reeves","Michael Nyqvist","Alfie Allen","Willem Dafoe"],r:"R",k:["hitman","revenge","assassin","organized crime"],o:"A retired hitman comes back for vengeance against the people who wronged him."},
+  {t:"Knives Out",y:2019,g:["Comedy","Crime","Mystery"],d:"Rian Johnson",c:["Daniel Craig","Chris Evans","Ana de Armas","Jamie Lee Curtis"],r:"PG-13",k:["whodunit","murder mystery","detective","family"],o:"A detective investigates the death of a wealthy novelist surrounded by a family full of motives."},
+  {t:"La La Land",y:2016,g:["Romance","Drama","Music"],d:"Damien Chazelle",c:["Ryan Gosling","Emma Stone","John Legend","Rosemarie DeWitt"],r:"PG-13",k:["musical","jazz","los angeles","dance"],o:"A jazz pianist and an aspiring actress chase their dreams in Los Angeles and fall for each other."},
+  {t:"Shrek",y:2001,g:["Animation","Comedy","Fantasy"],d:"Andrew Adamson",c:["Mike Myers","Eddie Murphy","Cameron Diaz","John Lithgow"],r:"PG",k:["fairy tale","ogre","parody","talking animal"],o:"A grumpy ogre sets out to rescue a princess so a tyrant lord will give him his swamp back."},
+  {t:"The Shawshank Redemption",y:1994,g:["Drama","Crime"],d:"Frank Darabont",c:["Tim Robbins","Morgan Freeman","Bob Gunton","William Sadler"],r:"R",k:["prison","escape","friendship","hope"],o:"A banker sent to prison for murder befriends a fellow inmate and quietly plans his way out."},
+  {t:"Ocean's Eleven",y:2001,g:["Crime","Thriller","Comedy"],d:"Steven Soderbergh",c:["George Clooney","Brad Pitt","Julia Roberts","Matt Damon"],r:"PG-13",k:["heist","casino","robbery","ensemble cast"],o:"A charming ex-con assembles a crew to rob three Las Vegas casinos in one night."},
+  {t:"Mission: Impossible - Fallout",y:2018,g:["Action","Adventure","Thriller"],d:"Christopher McQuarrie",c:["Tom Cruise","Henry Cavill","Ving Rhames","Simon Pegg"],r:"PG-13",k:["spy","secret agent","cia","espionage"],o:"A secret agent races to recover stolen plutonium after a mission goes wrong."},
+  {t:"Dune",y:2021,g:["Sci-Fi","Adventure"],d:"Denis Villeneuve",c:["Timothée Chalamet","Rebecca Ferguson","Oscar Isaac","Josh Brolin"],r:"PG-13",k:["desert","space","based on novel","prophecy"],o:"A gifted young heir is sent to a dangerous desert planet that holds the galaxy's most valuable resource."},
+  {t:"Barbie",y:2023,g:["Comedy","Adventure","Fantasy"],d:"Greta Gerwig",c:["Margot Robbie","Ryan Gosling","America Ferrera","Kate McKinnon"],r:"PG-13",k:["doll","satire","toy","identity"],o:"A doll living in a perfect world is pushed into the real one and starts questioning everything."},
+  {t:"Everything Everywhere All at Once",y:2022,g:["Sci-Fi","Comedy","Action"],d:"Daniel Kwan",c:["Michelle Yeoh","Stephanie Hsu","Ke Huy Quan","Jamie Lee Curtis"],r:"R",k:["multiverse","family","martial arts","dark comedy"],o:"An overwhelmed laundromat owner is pulled into a multiverse fight where every version of her life matters."},
+  {t:"Jaws",y:1975,g:["Horror","Thriller","Adventure"],d:"Steven Spielberg",c:["Roy Scheider","Robert Shaw","Richard Dreyfuss","Lorraine Gary"],r:"PG",k:["shark","creature","survival","summer"],o:"A police chief, a scientist and a grizzled fisherman hunt a great white terrorizing a beach town."},
+  {t:"Finding Nemo",y:2003,g:["Animation","Family","Adventure"],d:"Andrew Stanton",c:["Albert Brooks","Ellen DeGeneres","Alexander Gould","Willem Dafoe"],r:"G",k:["talking animal","ocean","father son","friendship"],o:"A timid clownfish crosses the ocean with a forgetful friend to find his missing son."}
+];
+function demoPool() {
+  return DEMO_MOVIES.map((x, i) => {
+    const g1 = x.g[0], g2 = x.g[1] || (g1 === "Drama" ? "Thriller" : "Drama");
+    let g3 = x.g[2] || "Thriller";
+    if (g3 === g1 || g3 === g2) g3 = "Mystery";
+    return {id: -(i + 1), demo: true, title: x.t, year: String(x.y), release_date: x.y + "-06-01",
+            g1, g2, g3, overview: x.o, poster_path: null, dir: x.d, cast: x.c, rating: x.r, kw: x.k};
+  });
+}
+
+async function loadPool() {
+  const movies = [];
+
+  // No pure popularity-only sort. Mix several orders so blockbusters
+  // don't dominate. Still capped — unlimited pages = very long load.
+
+  const queries = [
+    // Modern – mixed sorts, low vote floor
+    { sort: "primary_release_date.desc", gte: "2010-01-01", votes: 20, pages: 8 },
+    { sort: "vote_average.desc",         gte: "2010-01-01", votes: 80, pages: 6 },
+    { sort: "revenue.desc",              gte: "2010-01-01", votes: 30, pages: 5 },
+    { sort: "popularity.desc",           gte: "2010-01-01", votes: 20, pages: 5 },
+    // Older – mixed sorts
+    { sort: "vote_average.desc",         lte: "2009-12-31", votes: 100, pages: 4 },
+    { sort: "primary_release_date.desc", lte: "2009-12-31", votes: 50,  pages: 4 },
+    { sort: "popularity.desc",           lte: "2009-12-31", votes: 80,  pages: 3 }
+  ];
+
+  const urls = [];
+  for (const q of queries) {
+    for (let page = 1; page <= q.pages; page++) {
+      let url = `${BASE}/discover/movie?language=en-US` +
+        `&sort_by=${q.sort}&vote_count.gte=${q.votes}&page=${page}`;
+      if (q.gte) url += `&primary_release_date.gte=${q.gte}`;
+      if (q.lte) url += `&primary_release_date.lte=${q.lte}`;
+      if (q.sort === "vote_average.desc") url += `&vote_count.gte=${Math.max(q.votes, 100)}`;
+      urls.push(url);
+    }
+  }
+  for (const endpoint of ["top_rated", "now_playing", "upcoming"]) {
+    for (let page = 1; page <= 3; page++) {
+      urls.push(`${BASE}/movie/${endpoint}?language=en-US&page=${page}`);
+    }
+  }
+
+  // Fetch in small parallel batches (much faster than one-by-one, gentle on rate limits).
+  // Each page retries once; we remember the first error so a total failure is explainable.
+  let firstErr = null;
+  const getPage = async (url) => {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try { return (await fetchJSON(url)).results || []; }
+      catch (e) { firstErr = firstErr || e; await new Promise(r => setTimeout(r, 400)); }
+    }
+    return [];
+  };
+  for (let i = 0; i < urls.length; i += 8) {
+    const batch = await Promise.all(urls.slice(i, i + 8).map(getPage));
+    batch.forEach(r => movies.push(...r));
+  }
+  if (!movies.length) {
+    // TMDB unreachable (sandboxed preview, offline, bad key): fall back to built-in sample movies.
+    console.warn("TMDB unavailable, using demo mode:", firstErr && firstErr.message);
+    DEMO = true;
+    pool = demoPool();
+    const sub = document.querySelector(".sub");
+    if (sub) sub.textContent = "Offline demo mode: couldn't reach TMDB, so this uses built-in sample movies.";
+    return;
+  }
+
+  const seen = new Set();
+  const all = movies.filter(m => {
+    if (seen.has(m.id) || !m.poster_path) return false;
+    seen.add(m.id);
+    return true;
+  });
+
+  // Soft modern bias, larger mixed set (~650–700)
+  const modern = all.filter(m => (m.release_date || "").slice(0, 4) >= "2010");
+  const older  = all.filter(m => (m.release_date || "").slice(0, 4) < "2010");
+  pool = [...modern.slice(0, 520), ...older.slice(0, 150)].sort(() => Math.random() - 0.5);
+
+  if (!pool.length) throw new Error("No movies with posters came back from TMDB.");
+
+  pool.forEach(m => {
+    const gs =[...new Set((m.genre_ids || []).map(id => GENRE_MAP[id]).filter(Boolean))];
+    m.g1 = gs[0] || "Drama";
+    m.g2 = gs[1] || (gs[0] === "Drama" ? "Thriller" : "Drama");
+    m.g3 = gs[2] || (gs.find(g => g !== m.g1 && g !== m.g2) || "Thriller");
+    if (m.g1 === m.g2) m.g2 = "Thriller";
+    if (m.g3 === m.g1 || m.g3 === m.g2) m.g3 = "Mystery";
+    m.year = (m.release_date || "").slice(0, 4);
+    m.overview = m.overview || "No description available.";
+  });
+}
+
+function cover(m) {
+  const gens = [m.g1, m.g2, m.g3].filter(Boolean).slice(0,3).join("/");
+  if (!m.poster_path) {
+    let h = 0; for (const ch of m.title) h = (h * 31 + ch.charCodeAt(0)) % 360;
+    return `<div class="cv" style="background:linear-gradient(160deg,hsl(${h},50%,32%),hsl(${(h+40)%360},45%,14%))">
+      <div style="padding:14px 10px;font:700 16px/1.2 Georgia,serif">${m.title}</div>
+      <div class="info"><small>${m.year} · ${gens}</small></div>
+    </div>`;
+  }
+  return `<div class="cv">
+    <img src="${IMG}${m.poster_path}" alt="${m.title}" loading="lazy">
+    <div class="info"><b>${m.title}</b><small>${m.year} · ${gens}</small></div>
+  </div>`;
+}
+
+// Build a short strip with the target movie in the center + fillers on both sides
+function buildCenteredStrip(centerMovie, count = 7) {
+  const half = Math.floor(count / 2);
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    if (i === half) items.push(centerMovie);
+    else items.push(R(pool));
+  }
+  return items;
+}
+
+
+// ---------- Themed results: per-genre look ----------
+const hashStr = t => { let h = 2166136261; for (const c of t) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+const rngFrom = seed => { let a = seed; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
+
+const THEMES = {
+  action:   {dark:1, bg:"linear-gradient(160deg,#1c0904,#43110a 55%,#0b0a0f)", sky:["#3a0d06","#ff7a1a"], ac:"#ff6a1a", ac2:"#ffd23f", acx:"#1a0904", fx:"diag",    vig:.5,  art:"action",    font:"'Anton','Bebas Neue',Impact,sans-serif", ls:"2px", tt:"uppercase", fs:1.1},
+  adventure:{dark:0, bg:"linear-gradient(165deg,#fbe9b7,#e8b25a 55%,#3f8b78)", sky:["#fdeab4","#f08a3c"], ac:"#1f6f5c", ac2:"#ffcf5a", acx:"#fff",    fx:"dots",    vig:.18, art:"adventure", font:"'Bevan','Rye',Georgia,serif", ls:"1px", tt:"uppercase", fs:.85},
+  scifi:    {dark:1, bg:"radial-gradient(ellipse at 75% 0%,#1a2f6e,#070b1f 62%)", sky:["#050818","#1b2a68"], ac:"#4de1ff", ac2:"#a68bff", acx:"#04101a", fx:"stars",   vig:.55, art:"scifi",     font:"'Orbitron','Audiowide','Segoe UI',sans-serif", ls:"4px", tt:"uppercase", fs:.72},
+  horror:   {dark:1, bg:"radial-gradient(ellipse at 50% 0%,#3d0707,#090404 66%)", sky:["#120505","#4a0a0a"], ac:"#d41a1a", ac2:"#eadcc6", acx:"#fff",    fx:"grain",   vig:.65, art:"horror",    font:"'Creepster','Eater',Georgia,serif", ls:"3px", tt:"none", fs:1.1},
+  thriller: {dark:1, bg:"linear-gradient(180deg,#0d1217,#1d2d38)", sky:["#0a0f14","#26414f"], ac:"#e2b84b", ac2:"#8fb7c9", acx:"#161006", fx:"blinds",  vig:.5,  art:"noir",      font:"'Special Elite','Courier New',monospace", ls:"2px", tt:"uppercase", fs:.8},
+  crime:    {dark:1, bg:"linear-gradient(180deg,#0a0a0a,#2a1214)", sky:["#0b0b0d","#3b1418"], ac:"#e8c547", ac2:"#d6313a", acx:"#161006", fx:"blinds",  vig:.55, art:"crime",     font:"'Abril Fatface','Playfair Display',Georgia,serif", ls:"1px", tt:"none", fs:1},
+  romance:  {dark:0, bg:"linear-gradient(160deg,#ffe6ec,#ffc1d4 55%,#f59cc0)", sky:["#ff9ab8","#ffd8a8"], ac:"#c2185b", ac2:"#ffe08a", acx:"#fff",    fx:"hearts",  vig:.1,  art:"romance",   font:"'Great Vibes','Playfair Display',cursive", ls:"1px", tt:"none", fs:1.55},
+  comedy:   {dark:0, bg:"linear-gradient(150deg,#fff4b8,#ffd84d)", sky:["#ffe45c","#ff9f1c"], ac:"#e53935", ac2:"#2b8cff", acx:"#fff",    fx:"dots",    vig:.1,  art:"comedy",    font:"'Bangers','Chewy',Impact,cursive", ls:"2px", tt:"uppercase", fs:1.15},
+  animation:{dark:0, bg:"linear-gradient(180deg,#c3ecff,#fff3c9)", sky:["#6cc8ff","#d6f4ff"], ac:"#ff7043", ac2:"#ffd54a", acx:"#fff",    fx:"dots",    vig:.08, art:"animation", font:"'Fredoka','Baloo 2','Trebuchet MS',sans-serif", ls:"1px", tt:"none", fs:1.1, w:700},
+  fantasy:  {dark:1, bg:"linear-gradient(170deg,#1c1040,#3b1f5e 58%,#0d1a2e)", sky:["#120a2e","#4b2a7a"], ac:"#f0c254", ac2:"#b99cff", acx:"#1a1204", fx:"sparkle", vig:.5,  art:"fantasy",   font:"'Cinzel Decorative','Cinzel',Georgia,serif", ls:"2px", tt:"none", fs:.78, w:700},
+  drama:    {dark:1, bg:"linear-gradient(160deg,#241712,#5a3a28 60%,#1a1210)", sky:["#2a1a14","#b0724a"], ac:"#e8b87a", ac2:"#f4e4c8", acx:"#1e1209", fx:"none",    vig:.55, art:"drama",     font:"'Playfair Display','Cormorant Garamond',Georgia,serif", ls:"1px", tt:"none", fs:1, w:800, it:1},
+  western:  {dark:0, bg:"linear-gradient(170deg,#f3dcaa,#c98c4b)", sky:["#f7c873","#d9772b"], ac:"#7a2e0e", ac2:"#ffe0a3", acx:"#fff",    fx:"grainD",  vig:.25, art:"western",   font:"'Rye',Georgia,serif", ls:"1px", tt:"uppercase", fs:.8},
+  war:      {dark:1, bg:"linear-gradient(170deg,#161a13,#3a4230 60%,#10120e)", sky:["#1a1d16","#6a6f55"], ac:"#cdb86a", ac2:"#d95b2b", acx:"#14160f", fx:"grain",   vig:.6,  art:"war",       font:"'Black Ops One',Impact,sans-serif", ls:"2px", tt:"uppercase", fs:.85},
+  music:    {dark:1, bg:"linear-gradient(160deg,#1a0a33,#4a1560 55%,#0e0a22)", sky:["#12062a","#5a1a74"], ac:"#ff4fd8", ac2:"#4de1ff", acx:"#fff",    fx:"stars",   vig:.5,  art:"music",     font:"'Righteous','Trebuchet MS',sans-serif", ls:"2px", tt:"none", fs:1}
+};
+const THEME_OF = {Action:"action",Adventure:"adventure","Sci-Fi":"scifi",Horror:"horror",Thriller:"thriller",Mystery:"thriller",Romance:"romance",Comedy:"comedy",Animation:"animation",Family:"animation",Fantasy:"fantasy",Drama:"drama",History:"drama",Crime:"crime",Western:"western",War:"war",Music:"music"};
+
+// Sub-genres can swap the title typeface so two Action movies don't look alike
+const TAG_FONT = {
+  "Superhero":{f:"'Bangers',Impact,cursive",fs:1.15,tt:"uppercase",ls:"2px"},
+  "Cop":{f:"'Black Ops One',Impact,sans-serif",fs:.85,tt:"uppercase",ls:"2px"},
+  "Spy":{f:"'Special Elite','Courier New',monospace",fs:.85,tt:"uppercase",ls:"3px"},
+  "Heist":{f:"'Abril Fatface',Georgia,serif",fs:1,tt:"none",ls:"1px"},
+  "Mafia":{f:"'Abril Fatface',Georgia,serif",fs:1,tt:"none",ls:"1px"},
+  "Noir":{f:"'Abril Fatface',Georgia,serif",fs:1,tt:"none",ls:"1px"},
+  "Pirate":{f:"'Rye',Georgia,serif",fs:.8,tt:"uppercase",ls:"1px"},
+  "Musical":{f:"'Righteous','Trebuchet MS',sans-serif",fs:1,tt:"none",ls:"2px"},
+  "Zombie":{f:"'Eater','Creepster',Georgia,serif",fs:1.05,tt:"none",ls:"2px"},
+  "Slasher":{f:"'Creepster',Georgia,serif",fs:1.1,tt:"none",ls:"3px"},
+  "Supernatural":{f:"'Creepster',Georgia,serif",fs:1.1,tt:"none",ls:"3px"},
+  "Cyberpunk":{f:"'Orbitron',sans-serif",fs:.72,tt:"uppercase",ls:"4px"},
+  "Space":{f:"'Orbitron',sans-serif",fs:.72,tt:"uppercase",ls:"4px"},
+  "Time Travel":{f:"'Orbitron',sans-serif",fs:.72,tt:"uppercase",ls:"4px"},
+  "Fairy Tale":{f:"'Cinzel Decorative',Georgia,serif",fs:.78,tt:"none",ls:"2px"},
+  "Magic":{f:"'Cinzel Decorative',Georgia,serif",fs:.78,tt:"none",ls:"2px"},
+  "Dragons":{f:"'Cinzel Decorative',Georgia,serif",fs:.78,tt:"none",ls:"2px"},
+  "Period Piece":{f:"'Playfair Display',Georgia,serif",fs:1,tt:"none",ls:"1px"},
+  "Biopic":{f:"'Playfair Display',Georgia,serif",fs:1,tt:"none",ls:"1px"},
+  "Sports":{f:"'Anton',Impact,sans-serif",fs:1.1,tt:"uppercase",ls:"2px"},
+  "Car Chase":{f:"'Anton',Impact,sans-serif",fs:1.1,tt:"uppercase",ls:"2px"},
+  "Martial Arts":{f:"'Bevan',Georgia,serif",fs:.85,tt:"uppercase",ls:"1px"},
+  "Dark Comedy":{f:"'Special Elite','Courier New',monospace",fs:.85,tt:"uppercase",ls:"2px"},
+  "Coming-of-Age":{f:"'Fredoka',sans-serif",fs:1.1,tt:"none",ls:"1px"},
+  "High School":{f:"'Bangers',Impact,cursive",fs:1.15,tt:"uppercase",ls:"2px"},
+  "Rom-Com":{f:"'Fredoka',sans-serif",fs:1.1,tt:"none",ls:"1px"}
+};
+
+const TAGLINES = {
+  action:["One mission. No backup.","Every second costs something.","The city won't survive the night.","Somebody has to finish it."],
+  adventure:["The map is wrong. Go anyway.","Some roads only run one way.","What's out there is worth the trip."],
+  scifi:["We were never the first to arrive.","The signal is coming from inside.","Out here, nobody hears the answer."],
+  horror:["Don't look at the window.","It was here before you moved in.","Some doors should stay shut."],
+  thriller:["Trust is the first thing to go.","Someone has been watching all along.","The truth has a price."],
+  crime:["Everyone owes somebody.","The night shift never ends.","Clean money leaves a stain."],
+  romance:["Some timing is worth the wait.","They weren't looking for each other.","Love arrives uninvited."],
+  comedy:["What could possibly go wrong?","Plans are for other people.","Everyone's invited. Nobody's ready."],
+  animation:["Small hero. Big adventure.","The bravest ones start out scared.","Home is wherever your friends are."],
+  fantasy:["The old magic is waking up.","A crown is only as heavy as its oath.","Not every legend stays buried."],
+  drama:["Some things only come out at dinner.","The past keeps its own account.","Everyone remembers it differently."],
+  western:["The frontier keeps its own law.","Sundown settles every score.","Nobody rides in clean."],
+  war:["Nobody comes home the same.","Hold the line.","The quiet is the worst part."],
+  music:["The last song starts now.","Turn it up until it hurts.","One night. One stage."]
+};
+
+const STAMP = {
+  "Oscar frontrunner & box-office juggernaut":"Oscar bait","Awards contender with real commercial heat":"Awards contender",
+  "Critical darling that also made money":"Critics' darling","Beloved by critics, ignored by audiences":"Cult favorite",
+  "Runaway blockbuster":"Blockbuster","Major commercial hit":"Big hit","Solidly profitable":"Profitable","Modest success":"Modest hit",
+  "Barely broke even":"Broke even","Career-damaging flop":"Flop","Critical and commercial disappointment":"Disappointment",
+  "Box-office bomb":"Box-office bomb","Mixed bag — neither hit nor disaster":"Mixed bag"
+};
+
+// Background texture overlays
+const svgURL = t => `url("data:image/svg+xml,${encodeURIComponent(t)}")`;
+const FX = {
+  diag:   {img:"repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 3px,transparent 3px 26px)", size:"auto"},
+  blinds: {img:"linear-gradient(110deg,transparent 30%,rgba(255,255,255,.07) 46%,transparent 62%),repeating-linear-gradient(180deg,rgba(255,255,255,.05) 0 10px,transparent 10px 32px)", size:"auto"},
+  dots:   {img:"radial-gradient(rgba(0,0,0,.09) 22%,transparent 24%)", size:"16px 16px"},
+  stars:  {img:"radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1.5px 1.5px at 90px 70px,#fff,transparent),radial-gradient(1px 1px at 150px 120px,#cfe9ff,transparent),radial-gradient(1px 1px at 60px 150px,#fff,transparent),radial-gradient(1.5px 1.5px at 130px 20px,#ffd1f6,transparent)", size:"180px 180px"},
+  sparkle:{img:"radial-gradient(1.5px 1.5px at 20px 30px,#ffe9a8,transparent),radial-gradient(1px 1px at 90px 80px,#fff,transparent),radial-gradient(2px 2px at 150px 120px,#f0c254,transparent),radial-gradient(1px 1px at 60px 150px,#d9c8ff,transparent)", size:"170px 170px"},
+  grain:  {img:svgURL("<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(#n)' opacity='.28'/></svg>"), size:"160px 160px"},
+  grainD: {img:svgURL("<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(#n)' opacity='.22'/></svg>"), size:"160px 160px"},
+  hearts: {img:svgURL("<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><path d='M45 60C22 44 29 27 40 31C43 32 45 35 45 37C45 35 47 32 50 31C61 27 68 44 45 60Z' fill='#c2185b' opacity='.09'/></svg>"), size:"90px 90px"},
+  none:   {img:"none", size:"auto"}
+};
+
+// Site background: a ramp from near-black to ONE random muted colour, re-rolled every new game.
+const BG_HUES = [350, 12, 28, 45, 160, 185, 205, 225, 255, 280, 305, 330];
+function applyTheme(t) {
+  const b = document.body, fx = document.getElementById("bgfx");
+  if (fx) { fx.className = ""; fx.style.backgroundImage = ""; }
+  if (t) return; // the result screen keeps the same background as the draft screen; only the poster is themed
+  const h = BG_HUES[Math.floor(Math.random() * BG_HUES.length)];
+  b.style.background = `radial-gradient(ellipse 78% 68% at 100% 0%, hsla(${h},66%,30%,0.38) 0%, hsla(${h},58%,20%,0.18) 38%, transparent 76%), #050506`;
+  b.style.backgroundAttachment = "fixed";
+}
+applyTheme(null);
+
+// ----- Poster art (simple generated scenes, seeded by the movie title) -----
+const bld = (rnd,y0,col,minH,maxH,w0=12,w1=30,gap=3) => { let x=-4,o=""; while (x<304) { const w=w0+rnd()*(w1-w0), h=minH+rnd()*(maxH-minH); o+=`<rect x="${x.toFixed(1)}" y="${(y0-h).toFixed(1)}" width="${w.toFixed(1)}" height="${(h+2).toFixed(1)}" fill="${col}"/>`; x+=w+rnd()*gap; } return o; };
+const starsF = (rnd,n,col,ymax,rmax=1.4) => { let o=""; for (let i=0;i<n;i++) o+=`<circle cx="${(rnd()*300).toFixed(1)}" cy="${(rnd()*ymax).toFixed(1)}" r="${(0.4+rnd()*rmax).toFixed(2)}" fill="${col}" opacity="${(0.4+rnd()*0.6).toFixed(2)}"/>`; return o; };
+const lights = (rnd,n,col,y0,y1) => { let o=""; for (let i=0;i<n;i++) o+=`<rect x="${(rnd()*296).toFixed(1)}" y="${(y0+rnd()*(y1-y0)).toFixed(1)}" width="3" height="4" fill="${col}" opacity="${(0.5+rnd()*0.5).toFixed(2)}"/>`; return o; };
+const treeF = (rnd,x,y,len,ang,w,d) => { if (d<=0) return ""; const x2=x+Math.cos(ang)*len, y2=y-Math.sin(ang)*len; return `<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#050303" stroke-width="${w.toFixed(1)}" stroke-linecap="round"/>`+treeF(rnd,x2,y2,len*0.74,ang+0.4+rnd()*0.35,w*0.7,d-1)+treeF(rnd,x2,y2,len*0.74,ang-0.4-rnd()*0.35,w*0.7,d-1); };
+const spark4 = (x,y,s,col) => `<path d="M${x} ${y-s}Q${x} ${y} ${x+s} ${y}Q${x} ${y} ${x} ${y+s}Q${x} ${y} ${x-s} ${y}Q${x} ${y} ${x} ${y-s}Z" fill="${col}"/>`;
+const ridge = (rnd,y0,amp,col,n=8) => { let p=`M0 450 L0 ${y0}`; for (let i=1;i<=n;i++) p+=` L${(i*300/n).toFixed(0)} ${(y0-rnd()*amp).toFixed(1)}`; return `<path d="${p} L300 450Z" fill="${col}"/>`; };
+
+const ART = {
+  action:(a,b,rnd)=>{ let rays=""; for (let i=0;i<28;i++){ const an=i/28*Math.PI*2; rays+=`<line x1="150" y1="200" x2="${(150+Math.cos(an)*420).toFixed(0)}" y2="${(200+Math.sin(an)*420).toFixed(0)}"/>`; }
+    return `<g stroke="${b}" stroke-width="5" opacity=".22">${rays}</g><circle cx="150" cy="200" r="108" fill="${a}"/><circle cx="150" cy="200" r="70" fill="${b}" opacity=".85"/><polygon points="0,150 300,60 300,95 0,190" fill="#000" opacity=".28"/>${bld(rnd,450,"#0b0605",80,230)}${lights(rnd,30,b,260,440)}`; },
+  scifi:(a,b,rnd)=>`<defs><radialGradient id="pl" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="${b}"/><stop offset="1" stop-color="#0a1030"/></radialGradient></defs>${starsF(rnd,90,"#fff",330)}<circle cx="190" cy="165" r="80" fill="url(#pl)"/><ellipse cx="190" cy="165" rx="132" ry="26" fill="none" stroke="${a}" stroke-width="4" opacity=".75" transform="rotate(-18 190 165)"/><ellipse cx="150" cy="450" rx="260" ry="120" fill="${a}" opacity=".18"/>${ridge(rnd,385,40,"#03050f",9)}`,
+  horror:(a,b,rnd)=>`<circle cx="150" cy="150" r="74" fill="${b}" opacity=".93"/><circle cx="128" cy="132" r="12" fill="#cbbd9f" opacity=".6"/><circle cx="172" cy="170" r="17" fill="#cbbd9f" opacity=".5"/>${treeF(rnd,70,420,62,Math.PI/2+0.1,9,7)}${treeF(rnd,240,425,48,Math.PI/2-0.15,7,6)}<rect x="0" y="330" width="300" height="120" fill="${a}" opacity=".14"/><rect x="0" y="410" width="300" height="40" fill="#050303"/>`,
+  noir:(a,b,rnd)=>`<polygon points="150,0 70,450 230,450" fill="${a}" opacity=".13"/>${bld(rnd,450,"#05080b",120,260,18,40)}${lights(rnd,22,a,220,440)}<ellipse cx="150" cy="446" rx="120" ry="9" fill="${a}" opacity=".18"/><circle cx="150" cy="352" r="9" fill="#020304"/><rect x="138" y="343" width="24" height="3" fill="#020304"/><path d="M135 362 L165 362 L172 432 L128 432Z" fill="#020304"/>`,
+  crime:(a,b,rnd)=>{ let rain=""; for (let i=0;i<70;i++){ const x=rnd()*320, y=rnd()*430; rain+=`<line x1="${x.toFixed(0)}" y1="${y.toFixed(0)}" x2="${(x-6).toFixed(0)}" y2="${(y+22).toFixed(0)}"/>`; }
+    return `${bld(rnd,450,"#070708",150,300,16,36)}${lights(rnd,34,a,200,440)}<rect x="40" y="250" width="72" height="14" rx="3" fill="${b}" opacity=".9"/><g stroke="#fff" opacity=".18" stroke-width="1">${rain}</g>`; },
+  romance:(a,b,rnd)=>`<defs><linearGradient id="sn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${b}"/><stop offset="1" stop-color="${a}"/></linearGradient></defs><circle cx="150" cy="250" r="95" fill="url(#sn)"/><rect x="0" y="262" width="300" height="190" fill="#3a1030" opacity=".55"/>${[0,1,2,3,4,5,6].map(i=>`<rect x="${80+i*6}" y="${272+i*14}" width="${140-i*12}" height="4" fill="${b}" opacity="${(0.7-i*0.08).toFixed(2)}"/>`).join("")}<path d="M150 150C110 120 120 90 140 96C146 98 150 104 150 104C150 104 154 98 160 96C180 90 190 120 150 150Z" fill="#fff" opacity=".88"/>`,
+  comedy:(a,b,rnd)=>{ let st=""; for (let i=0;i<32;i++){ const r=i%2?105:190, an=i/32*Math.PI*2; st+=`${(150+Math.cos(an)*r).toFixed(1)},${(210+Math.sin(an)*r).toFixed(1)} `; }
+    let cf=""; const cols=[a,b,"#fff","#34c759","#ff7ab6"]; for (let i=0;i<46;i++){ const x=rnd()*290, y=rnd()*440; cf+=`<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="8" height="14" fill="${cols[i%5]}" transform="rotate(${(rnd()*180).toFixed(0)} ${(x+4).toFixed(0)} ${(y+7).toFixed(0)})"/>`; }
+    return `<polygon points="${st}" fill="${a}"/><circle cx="150" cy="210" r="92" fill="${b}"/>${cf}`; },
+  animation:(a,b,rnd)=>{ const cl=(x,y,s)=>`<g fill="#fff" opacity=".95"><circle cx="${x}" cy="${y}" r="${18*s}"/><circle cx="${x+20*s}" cy="${y-8*s}" r="${22*s}"/><circle cx="${x+44*s}" cy="${y}" r="${17*s}"/><rect x="${x}" y="${y}" width="${44*s}" height="${17*s}" rx="${8*s}"/></g>`;
+    return `<circle cx="235" cy="85" r="42" fill="${b}"/>${cl(30,110,1.3)}${cl(160,170,1)}${cl(200,250,.8)}<ellipse cx="60" cy="470" rx="230" ry="150" fill="#5ccf8c"/><ellipse cx="260" cy="480" rx="220" ry="140" fill="#3fb57a"/><ellipse cx="150" cy="520" rx="260" ry="120" fill="#2e9a69"/>${spark4(70,60,8,"#fff")}${spark4(120,30,5,"#fff")}`; },
+  fantasy:(a,b,rnd)=>`${starsF(rnd,60,"#fff",260)}<circle cx="215" cy="95" r="46" fill="${a}" opacity=".9"/>${ridge(rnd,330,70,"#241447",8)}<g fill="#0e0824"><rect x="120" y="250" width="60" height="130"/><rect x="108" y="226" width="22" height="154"/><rect x="170" y="226" width="22" height="154"/><polygon points="104,226 119,190 134,226"/><polygon points="166,226 181,190 196,226"/><polygon points="132,250 150,200 168,250"/></g><g fill="${a}"><rect x="143" y="290" width="6" height="10"/><rect x="113" y="260" width="5" height="8"/><rect x="176" y="260" width="5" height="8"/></g>${ridge(rnd,400,34,"#0a0620",9)}${spark4(60,160,9,a)}${spark4(250,200,7,b)}${spark4(90,260,6,b)}`,
+  drama:(a,b,rnd)=>`<circle cx="150" cy="290" r="84" fill="${b}" opacity=".9"/>${ridge(rnd,330,26,"#2b1a13",7)}${ridge(rnd,372,18,"#170e0a",6)}<line x1="205" y1="372" x2="205" y2="318" stroke="#0e0806" stroke-width="3"/><circle cx="205" cy="312" r="14" fill="#0e0806"/>`,
+  western:(a,b,rnd)=>`<circle cx="150" cy="300" r="100" fill="${b}" opacity=".9"/><g fill="#5a2410"><polygon points="20,380 40,300 90,300 110,380"/><polygon points="200,380 215,270 262,270 290,380"/><polygon points="130,380 142,330 175,330 188,380"/></g><rect x="0" y="378" width="300" height="80" fill="#3a1608"/><g fill="#1f0d05"><rect x="60" y="340" width="8" height="52" rx="4"/><rect x="48" y="355" width="8" height="20" rx="4"/><rect x="72" y="350" width="8" height="18" rx="4"/></g>`,
+  war:(a,b,rnd)=>`<circle cx="210" cy="150" r="40" fill="${b}" opacity=".7"/><ellipse cx="80" cy="120" rx="110" ry="60" fill="#000" opacity=".35"/><ellipse cx="230" cy="70" rx="110" ry="50" fill="#000" opacity=".3"/><g stroke="${a}" stroke-width="12" opacity=".12"><line x1="40" y1="450" x2="120" y2="0"/><line x1="250" y1="450" x2="170" y2="0"/></g>${bld(rnd,450,"#0d0f0a",50,170,10,26,6)}`,
+  music:(a,b,rnd)=>{ let ring=""; for (let i=1;i<=5;i++) ring+=`<circle cx="150" cy="190" r="${i*32}" fill="none" stroke="${a}" stroke-width="${7-i}" opacity="${(0.9-i*0.13).toFixed(2)}"/>`;
+    let bars=""; for (let i=0;i<20;i++){ const h=30+rnd()*110; bars+=`<rect x="${i*15+3}" y="${(450-h).toFixed(0)}" width="10" height="${h.toFixed(0)}" fill="${b}" opacity=".85"/>`; }
+    return `${ring}<circle cx="150" cy="190" r="24" fill="${b}"/>${bars}`; },
+  adventure:(a,b,rnd)=>`<circle cx="220" cy="120" r="52" fill="${b}"/>${ridge(rnd,300,150,"#2f6f62",6)}${ridge(rnd,350,80,"#215246",8)}<path d="M40 450 C120 410 60 380 150 360 S230 330 200 300" fill="none" stroke="${b}" stroke-width="5" stroke-dasharray="3 9" stroke-linecap="round"/>${ridge(rnd,410,30,"#123a30",9)}`
+};
+function posterArt(t, seed) {
+  const rnd = rngFrom(hashStr(seed));
+  return `<svg class="part" viewBox="0 0 300 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${t.sky[0]}"/><stop offset="1" stop-color="${t.sky[1]}"/></linearGradient></defs><rect width="300" height="450" fill="url(#sk)"/>${ART[t.art](t.ac, t.ac2, rnd)}</svg>`;
+}
+
+function start() {
+  applyTheme(null);
+  S = {
+    picks: [null,null,null,null,null,null,null,null],
+    movie: null,
+    rolling: false,
+    last: R(pool),
+    rerollsLeft: 3,
+    pending: null,
+    stripCache: null,
+    resultSeed: null
+  };
+  S.stripCache = buildCenteredStrip(S.last, 9);
+  render();
+}
+
+function render() {
+  document.getElementById("steps").innerHTML = STEPS.map((x,i) => {
+    const p = S.picks[i];
+    let label = "";
+    if (p) {
+      label = p.from ? `${p.name} <small style="opacity:.75">(from ${p.from})</small>` : p.name;
+    }
+    return `<div class="${p?'on':''}">${x}${p ? ': <b>'+label+'</b>' : ''}</div>`;
+  }).join("");
+
+  // Keep the same left/right posters until the next real roll
+  const items = S.stripCache || buildCenteredStrip(S.last, 9);
+  document.getElementById("app").innerHTML = `
+    <div class="reel">
+      <div class="mark"></div>
+      <div class="strip" id="strip">${items.map(cover).join("")}</div>
+    </div>
+    <div id="pa"></div>
+    <button class="btn" id="rb" onclick="roll()">🎰 Roll the reel</button>
+    <span class="sub"> ${8 - S.picks.filter(Boolean).length} picks left</span>`;
+  centerStrip(4);
+}
+
+function centerStrip(centerIndex = 3) {
+  const st = document.getElementById("strip");
+  if (!st) return;
+  const reel = st.parentElement;
+  const vw = reel.clientWidth;
+  // Position so the center of the chosen card sits under the mark
+  const offset = (vw / 2) - (centerIndex * CARD_W) - 60;
+  st.style.transition = "none";
+  st.style.transform = `translateX(${offset}px)`;
+}
+
+function doReroll() {
+  if (S.rerollsLeft <= 0 || S.rolling) return;
+  S.rerollsLeft--;
+  S.pending = null;
+  S.movie = null;
+  roll();
+}
+
+async function roll() {
+  if (S.rolling) return;
+  S.rolling = true;
+  S.movie = null;
+  S.pending = null;
+  document.getElementById("pa").innerHTML = "";
+  const rb = document.getElementById("rb");
+  if (rb) rb.disabled = true;
+
+  // True random winner
+  const m = R(pool);
+
+  // Long strip = many movies fly past (creates near-miss excitement)
+  const before = 52;   // cards that spin past before the winner
+  const after  = 10;   // cards after winner so right side never empties
+  const items = [];
+  for (let i = 0; i < before; i++) items.push(R(pool));
+  items.push(m);       // this one lands under the center mark
+  for (let i = 0; i < after; i++) items.push(R(pool));
+
+  const st = document.getElementById("strip");
+  const reel = st.parentElement;
+  const vw = reel.clientWidth;
+
+  // Start position
+  st.style.transition = "none";
+  st.innerHTML = items.map(cover).join("");
+  st.style.transform = `translateX(${vw/2 - 60}px)`;
+  st.offsetWidth;
+
+  // Strong slow-down at the end (real wheel feel)
+  // Random jitter so it doesn't always stop dead-center
+  // Can land a bit left, a bit right, or almost on the mark
+  const jitter = (Math.random() - 0.5) * 90; // -45px to +45px
+  const finalOffset = (vw / 2) - (before * CARD_W) - 60 + jitter;
+  st.style.transition = "transform 4.4s cubic-bezier(.15, .75, .05, 1)";
+  st.style.transform = `translateX(${finalOffset}px)`;
+
+  let done = false;
+  const fin = async () => {
+    if (done) return;
+    done = true;
+    S.rolling = false;
+    S.last = m;
+
+    // Save the real near-miss neighbors so they stay after you pick
+    const start = Math.max(0, before - 4);
+    S.stripCache = items.slice(start, start + 9);
+    if (S.stripCache.length === 9) {
+      S.stripCache[4] = m;
+    }
+
+    // Keep exact landed position (including the off-center jitter)
+    st.style.transition = "none";
+    st.style.transform = `translateX(${finalOffset}px)`;
+
+    await land(m);
+  };
+  st.addEventListener("transitionend", fin, {once:true});
+  setTimeout(fin, 4700);
+}
+
+async function land(m) {
+  document.getElementById("rb").style.display = "none";
+  document.getElementById("pa").innerHTML = `<div class="loading">Loading cast & crew…</div>`;
+
+  try {
+    const credits = m.demo
+      ? {crew: [{job: "Director", name: m.dir}], cast: m.cast.map(n => ({name: n}))}
+      : await fetchJSON(`${BASE}/movie/${m.id}/credits`);
+    const director = credits.crew.find(c => c.job === "Director") || {name: "Unknown Director"};
+    const cast = credits.cast || [];
+    const lead = cast[0] || {name: "Unknown Actor"};
+    const supports = [
+      cast[1] || {name: "Unknown"},
+      cast[2] || {name: "Unknown"},
+      cast[3] || {name: "Unknown"}
+    ];
+
+    let rating = m.demo ? m.rating : "PG-13";
+    if (!m.demo) try {
+      const rd = await fetchJSON(`${BASE}/movie/${m.id}/release_dates`);
+      const us = rd.results.find(r => r.iso_3166_1 === "US");
+      if (us && us.release_dates.length) {
+        const cert = us.release_dates.find(d => d.certification)?.certification;
+        if (cert && ["G","PG","PG-13","R","NC-17"].includes(cert)) rating = cert;
+      }
+    } catch(e){}
+
+    // Pull TMDB keywords so the sub-genre options are specific to THIS movie
+    let kws = m.demo ? m.kw : [];
+    if (!m.demo) try {
+      const kd = await fetchJSON(`${BASE}/movie/${m.id}/keywords`);
+      kws = (kd.keywords || []).map(k => k.name);
+    } catch(e) {}
+    m.tags = deriveTags(m, kws);
+
+    const srcGens = [...new Set([m.g1, m.g2, ...m.tags].filter(Boolean))];
+    // Actors/director keep the "version" of the movie they were drafted from
+    m.d  = person(director.name, 1, m.title, srcGens, director.profile_path, director.id);
+    m.l  = person(lead.name, 1.2, m.title, srcGens, lead.profile_path, lead.id);
+    m.s2 = person(supports[0].name, 0.9, m.title, srcGens, supports[0].profile_path, supports[0].id);
+    m.s3 = person(supports[1].name, 0.5, m.title, srcGens, supports[1].profile_path, supports[1].id);
+    m.s4 = person(supports[2].name, 0.2, m.title, srcGens, supports[2].profile_path, supports[2].id);
+    m.r  = rating;
+    m.availableSupports = [m.s2, m.s3, m.s4];
+    // Use each person's TMDB filmography genres when available; cache results to avoid repeat requests.
+    await Promise.all([m.d, m.l, m.s2, m.s3, m.s4].map(enrichPersonGenreHistory));
+    // 2 real genres + 2 sub-genres
+    m.availableGenres = [m.g1, m.g2, ...m.tags].filter((g,i,a) => g && a.indexOf(g) === i);
+
+    // Enrich with OMDb (IMDb / Rotten Tomatoes / Awards)
+    m.omdb = null;
+    if (!m.demo) try {
+      const omdbUrl = `/api/omdb?t=${encodeURIComponent(m.title)}&y=${m.year}`;
+      const omdb = await fetchJSON(omdbUrl);
+      if (omdb && omdb.Response === "True") {
+        m.omdb = {
+          imdb: omdb.imdbRating || null,
+          rt: (omdb.Ratings || []).find(r => r.Source === "Rotten Tomatoes")?.Value || null,
+          metacritic: (omdb.Ratings || []).find(r => r.Source === "Metacritic")?.Value || null,
+          awards: omdb.Awards && omdb.Awards !== "N/A" ? omdb.Awards : null,
+          runtime: omdb.Runtime || null
+        };
+      }
+    } catch(e) {}
+
+    S.movie = m;
+    S.pending = null;
+    showLandOptions();
+  } catch (err) {
+    document.getElementById("pa").innerHTML = `
+      <div class="pa"><p style="color:var(--ac)">Failed to load cast. Try rolling again.</p>
+      <button class="btn" onclick="start()">Back</button></div>`;
+  }
+}
+
+// Round headshot (TMDB photo) with a coloured-initials fallback underneath it
+function avatar(p) {
+  let h = 0; for (const ch of (p.name || "?")) h = (h * 31 + ch.charCodeAt(0)) % 360;
+  const ini = (p.name || "?").split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+  const img = p.photo ? `<img src="${IMG}${p.photo}" alt="" loading="lazy" onerror="this.style.display='none'">` : "";
+  return `<span class="av" style="background:hsl(${h},38%,30%)">${ini}${img}</span>`;
+}
+function pbtn(label, p, small, click) {
+  return `<button ${click ? `onclick="${click}"` : "disabled"}><span class="pr">${avatar(p)}<span class="tx"><b>${label}</b><br>${p.name}<small>${small}</small></span></span></button>`;
+}
+
+function showLandOptions() {
+  const m = S.movie;
+  if (!m) return;
+
+  const freeSupportSlots = [];
+  if (!S.picks[2]) freeSupportSlots.push({idx:2, label:"2nd Billed (more influence)"});
+  if (!S.picks[3]) freeSupportSlots.push({idx:3, label:"3rd Billed"});
+  if (!S.picks[4]) freeSupportSlots.push({idx:4, label:"4th Billed (less influence)"});
+
+  const freeGenreSlots = [];
+  if (!S.picks[5]) freeGenreSlots.push({idx:5, label:"Genre 1 (primary – more influence)"});
+  if (!S.picks[6]) freeGenreSlots.push({idx:6, label:"Genre 2 (secondary)"});
+
+  const takenGenreNames = new Set();
+  if (S.picks[5]) takenGenreNames.add(S.picks[5].name);
+  if (S.picks[6]) takenGenreNames.add(S.picks[6].name);
+
+  let omdbLine = "";
+  if (m.omdb) {
+    const parts = [];
+    if (m.omdb.imdb) parts.push(`IMDb ${m.omdb.imdb}`);
+    if (m.omdb.rt) parts.push(`RT ${m.omdb.rt}`);
+    if (m.omdb.metacritic) parts.push(`Metacritic ${m.omdb.metacritic}`);
+    if (m.omdb.runtime) parts.push(m.omdb.runtime);
+    omdbLine = `<p style="margin:4px 0 8px;font-size:12px;color:var(--mu)">${parts.join(" · ")}</p>`;
+    if (m.omdb.awards) omdbLine += `<p style="margin:0 0 10px;font-size:12px;color:var(--ac)">${m.omdb.awards}</p>`;
+  }
+
+  let html = `
+    <div class="pa">
+      <h3>${m.title} <small style="font-weight:400;opacity:.65">(${m.year})</small></h3>
+      ${omdbLine}
+      <p class="overview">${m.overview}</p>
+      <p>Pick ONE thing to take from this movie.</p>`;
+
+  if (S.pending) {
+    const p = S.pending;
+    if (p.type === "support") {
+      html += `
+        <div class="slot-choice">
+          <p>Assign <b>${p.person.name}</b>${p.person.from ? ` <small>(from ${p.person.from})</small>` : ""} to which billing?</p>
+          <div class="row">
+            ${freeSupportSlots.map(s => `<button onclick="confirmSlot(${s.idx})">${s.label}</button>`).join("")}
+          </div>
+          <button class="btn alt" style="margin-top:10px" onclick="cancelPending()">Cancel</button>
+        </div>`;
+    } else if (p.type === "genre") {
+      html += `
+        <div class="slot-choice">
+          <p>Assign <b>${p.name}</b> to which genre slot?</p>
+          <div class="row">
+            ${freeGenreSlots.map(s => `<button onclick="confirmSlot(${s.idx})">${s.label}</button>`).join("")}
+          </div>
+          <button class="btn alt" style="margin-top:10px" onclick="cancelPending()">Cancel</button>
+        </div>`;
+    }
+  } else {
+    html += `<div class="row">`;
+
+    if (!S.picks[0]) {
+      html += pbtn("Director", m.d, `from ${m.title}`, "takeFixed(0)");
+    } else {
+      html += pbtn("Director", m.d, "Already taken", null);
+    }
+
+    if (!S.picks[1]) {
+      html += pbtn("Lead (1st Billed)", m.l, `from ${m.title}`, "takeFixed(1)");
+    } else {
+      html += pbtn("Lead (1st Billed)", m.l, "Already taken", null);
+    }
+
+    m.availableSupports.forEach((sup, i) => {
+      const alreadyUsed = S.picks.some((p, idx) => idx >= 2 && idx <= 4 && p && p.name === sup.name);
+      if (alreadyUsed || freeSupportSlots.length === 0) {
+        html += pbtn("Supporting actor", sup, alreadyUsed ? "Already drafted" : "No free slots", null);
+      } else {
+        html += pbtn("Supporting actor", sup, `from ${m.title}`, `startSupport(${i})`);
+      }
+    });
+
+    m.availableGenres.forEach((gName) => {
+      const alreadyUsed = takenGenreNames.has(gName);
+      if (alreadyUsed || freeGenreSlots.length === 0) {
+        html += `<button disabled><b>Genre</b><br>${gName}<small>${alreadyUsed ? "Already drafted" : "No free slots"}</small></button>`;
+      } else {
+        const isTag = !!SUB[gName];
+        html += `<button onclick="startGenre('${gName}')"><b>${isTag ? "Sub-genre" : "Genre"}</b><br>${gName}<small>${isTag ? "under " + parentOf(gName) + " · choose slot" : "Click to choose slot"}</small></button>`;
+      }
+    });
+
+    if (!S.picks[7]) {
+      html += `<button onclick="takeFixed(7)"><b>Rating</b><br>${m.r}</button>`;
+    } else {
+      html += `<button disabled><b>Rating</b><br>${m.r}<small>Already taken</small></button>`;
+    }
+
+    html += `</div>`;
+
+    if (S.rerollsLeft > 0) {
+      html += `<div style="margin-top:14px"><button class="btn alt" onclick="doReroll()">🔄 Reroll this movie (${S.rerollsLeft} left)</button></div>`;
+    } else {
+      html += `<p style="margin-top:12px;font-size:13px;color:var(--mu)">No rerolls left this game.</p>`;
+    }
+  }
+
+  html += `</div>`;
+  document.getElementById("pa").innerHTML = html;
+}
+
+function takeFixed(slotIdx) {
+  if (!S.movie || S.picks[slotIdx]) return;
+  const m = S.movie;
+  if (slotIdx === 0) S.picks[0] = m.d;
+  else if (slotIdx === 1) S.picks[1] = m.l;
+  else if (slotIdx === 7) S.picks[7] = {name: m.r};
+  S.movie = null;
+  S.pending = null;
+  afterTake();
+}
+
+function startSupport(supportIndex) {
+  if (!S.movie) return;
+  const free = [];
+  if (!S.picks[2]) free.push(2);
+  if (!S.picks[3]) free.push(3);
+  if (!S.picks[4]) free.push(4);
+
+  // If only one slot left, auto-assign
+  if (free.length === 1) {
+    S.picks[free[0]] = S.movie.availableSupports[supportIndex];
+    S.movie = null;
+    S.pending = null;
+    afterTake();
+    return;
+  }
+
+  S.pending = { type: "support", person: S.movie.availableSupports[supportIndex] };
+  showLandOptions();
+}
+
+function startGenre(genreName) {
+  if (!S.movie) return;
+  const free = [];
+  if (!S.picks[5]) free.push(5);
+  if (!S.picks[6]) free.push(6);
+
+  // If only one genre slot left, auto-assign
+  if (free.length === 1) {
+    S.picks[free[0]] = { name: genreName };
+    S.movie = null;
+    S.pending = null;
+    afterTake();
+    return;
+  }
+
+  S.pending = { type: "genre", name: genreName };
+  showLandOptions();
+}
+
+function confirmSlot(slotIdx) {
+  if (!S.pending) return;
+  if (S.pending.type === "support") S.picks[slotIdx] = S.pending.person;
+  else if (S.pending.type === "genre") S.picks[slotIdx] = { name: S.pending.name };
+  S.pending = null;
+  S.movie = null;
+  afterTake();
+}
+
+function cancelPending() {
+  S.pending = null;
+  showLandOptions();
+}
+
+function afterTake() {
+  if (S.picks.every(Boolean)) {
+    // Show thinking state then generate result
+    showThinkingThenResult();
+  } else {
+    render();
+  }
+}
+
+function showThinkingThenResult() {
+  document.getElementById("steps").innerHTML = "";
+  document.getElementById("app").innerHTML = `
+    <div class="thinking">
+      <div>Writing the script…</div>
+      <div class="dots">● ● ●</div>
+      <p id="thinkMsg">Drafting plot and assembling the cast…</p>
+    </div>`;
+
+  const messages = [
+    "Drafting plot and assembling the cast…",
+    "Balancing tone and genre chemistry…",
+    "Writing critic reviews…",
+    "Collecting audience reactions…",
+    "Finalizing box office projections…"
+  ];
+  let i = 0;
+  const msgEl = document.getElementById("thinkMsg");
+  const interval = setInterval(() => {
+    i = (i + 1) % messages.length;
+    if (msgEl) msgEl.textContent = messages[i];
+  }, 1400);
+
+  // 6–8 second “thinking” delay
+  const delay = 6000 + Math.random() * 2000;
+  setTimeout(() => {
+    clearInterval(interval);
+    result();
+  }, delay);
+}
+
+const AD = ["Last","Silent","Broken","Crimson","Midnight","Golden","Hollow","Final","Electric","Lonely","Neon","Shadow","Iron","Quiet","Wild","Fading","Burning"];
+const NO = {
+  Action:["Protocol","Strike","Highway","Reckoning","Siege","Fury","Edge"],
+  Comedy:["Wedding","Roommates","Mix-Up","Road Trip","Disaster","Weekend"],
+  Horror:["House","Whisper","Basement","Hour","Presence","Signal"],
+  "Sci-Fi":["Signal","Orbit","Colony","Echo","Horizon","Pulse"],
+  Drama:["Summer","Letter","Harbor","Promise","Inheritance","Distance"],
+  Romance:["Kiss","Letters","Season","Waltz","Collision","Afterglow"],
+  Thriller:["Witness","Alibi","Mirror","Deal","Collapse","Trace"],
+  Animation:["Quest","Kingdom","Friends","Voyage","Spark","Realm"],
+  Fantasy:["Crown","Veil","Realm","Oath","Ember","Legacy"],
+  Adventure:["Trail","Horizon","Expedition","Crossing","Frontier"],
+  Crime:["Debt","Code","Syndicate","Ledger","Night"]
+};
+
+const PL_LONG = {
+  Action: "In a world on the brink, a burned-out operative is pulled back into the field for one final mission. With only 48 hours on the clock, they must navigate a web of betrayals that reaches the highest levels of power. Old allies resurface with unclear motives, while a shadowy network moves pieces across the board. Every decision carries weight — one wrong move and the city, or worse, burns. Along the way, personal demons and a fractured past threaten to unravel the mission from within.",
+  Comedy: "Two completely mismatched strangers find themselves stuck together through a series of increasingly absurd misfortunes. What starts as a simple weekend plan spirals into chaos involving mistaken identities, a runaway pet, an overzealous wedding planner, and one very expensive rental car. As the disasters pile up, so does the unlikely chemistry. By the time the dust settles, neither of them is quite the same — and the audience is left wondering how any of this could have gone so spectacularly wrong.",
+  Horror: "A family moves into a quiet house that seems perfect on the surface. But the walls remember. Strange noises in the night give way to glimpses of people who once lived there — and never left. As the family’s grip on reality loosens, they discover the house has been waiting for them specifically. Secrets buried for decades begin to surface, and the line between the living and the dead grows thinner with every passing hour. Some houses don’t want new owners. They want new residents.",
+  "Sci-Fi": "A deep-space crew receives a signal that sounds exactly like their own voices — broadcast from a place they have never been. The closer they get, the more the boundaries of identity begin to fray. Memories that don’t belong to them surface. Faces they recognize appear where they shouldn’t. What starts as a routine investigation becomes a confrontation with something that may have been following them all along. In the silence between stars, the greatest threat might be the reflection of themselves.",
+  Drama: "An estranged family is forced to reunite after decades of silence when a long-buried secret finally comes to light. Old wounds reopen in quiet rooms and tense dinners. Each member carries a different version of the past, and none of them are ready to surrender theirs. As the truth slowly surfaces, love, resentment, and regret collide. The question is not whether they can forgive each other — but whether they can survive the version of the story that has been waiting all this time to be told.",
+  Romance: "Two rivals keep crossing paths in the same place until neither can pretend the meetings are accidental anymore. What begins as sharp banter and careful distance slowly gives way to something neither of them planned for. Shared silences grow heavier. Small kindnesses start to matter more than the competition that first brought them together. But timing, pride, and the lives they have already built refuse to make it easy. Some connections arrive too late. Others arrive exactly when they are needed most.",
+  Thriller: "A quiet professional discovers that the work they have been doing for years hides something far deadlier than they ever imagined. Numbers that don’t add up. Files that vanish. Colleagues who suddenly stop answering. The deeper they dig, the more the walls close in. Trust becomes a liability. Every conversation could be a trap. As the truth edges closer, so does the people who will do anything to keep it buried. In this game, the smartest move might be the one that looks like surrender.",
+  Animation: "A tiny creature and an unlikely friend set out across a vast magical kingdom to restore something that was taken long ago. Along the way they meet strange allies, face trials that test more than strength, and slowly discover that the journey itself is changing them. Light is fading from the world, and only those who still believe in small acts of courage can bring it back. What starts as a simple quest becomes a story about belonging, found family, and the quiet power of not giving up.",
+  Fantasy: "An ordinary person stumbles into a hidden world that has been waiting for them. Ancient rules, forgotten debts, and powers that answer to bloodlines long thought extinct begin to stir. What first feels like wonder quickly turns into responsibility. Allies appear with their own agendas. Enemies wear familiar faces. To survive, they must decide who they are willing to become — and what they are prepared to leave behind in the world they used to know.",
+  Adventure: "A reluctant hero is pulled into a journey that will take them farther than they ever intended to go. Maps that lie, companions who may not be what they seem, and a prize that everyone wants for different reasons. The road is long and the stakes keep rising. What begins as a simple task becomes a test of endurance, loyalty, and the kind of courage that doesn’t look like bravery until the moment it is needed most.",
+  Crime: "A small-time operator finally gets a shot at the big leagues — and immediately realizes they are in over their head. The people who never forget start paying attention. Deals that looked clean turn dirty. Friends become liabilities. In a world where the wrong word can end everything, the only way out might be further in. Survival depends on knowing when to take the money and when to walk away empty-handed."
+};
+
+// Review templates that can reference chemistry / portfolio
+const POS = [
+  "{t} is a triumph. {d}’s direction feels assured and {l} delivers a performance that ranks among their best work.",
+  "The chemistry between {l} and the supporting cast elevates everything. {d} has clearly found a sweet spot here.",
+  "Smart, moving, and surprisingly personal. You can feel the lived-in quality of the performances — especially from {l}.",
+  "A confident, big-hearted film. {d} trusts the actors and they repay that trust in every scene.",
+  "Whatever past collaborations these people may have had, the sparks are real. {l} and company make it look effortless.",
+  "{s2} gives the story an unexpected emotional center, while {s3} adds warmth and bite. {t} is a real ensemble effort.",
+  "The best moments come when {s3} and {s4} get room to play. {d} balances the whole cast with confidence.",
+  "A terrific group effort: {l} anchors the film, but {s2} and {s4} provide some of its most memorable scenes.",
+  "{t} makes every character count. {s2} brings nuance, and {s3} nearly steals the show."
+];
+const MID = [
+  "{t} has strong individual pieces — {l} is committed, {d} has a clear visual eye — but the whole never quite locks together.",
+  "You can see what {d} was aiming for. The cast (especially {l}) does solid work, yet the script keeps them at arm’s length.",
+  "Interesting pairing on paper. In practice the chemistry between the leads feels slightly forced, and the middle act drags.",
+  "A respectable effort that never becomes essential. Good performances, familiar beats, limited lasting impact.",
+  "{s2} and {s3} bring some life to the middle stretch, but the script gives them too little to work with.",
+  "The ensemble has potential, especially {s4}, though too many characters feel underwritten.",
+  "{d} gets a few strong scenes from {s2}, but the supporting roles rarely develop beyond their setup."
+];
+const NEG = [
+  "{t} is a mismatch of talents. {d} and {l} have both done better work; here the spark simply never catches.",
+  "The pedigree on this one is strong, which makes the final result more disappointing. Nothing quite coheres.",
+  "You keep waiting for the moment when the ensemble clicks. It never arrives. A curiously flat experience.",
+  "Talented people can still make a dull movie. This is proof. {l} tries, but the material gives them nowhere to go.",
+  "Even {s2} and {s3} struggle to make their characters feel real; the script leaves the ensemble stranded.",
+  "The supporting cast, including {s4}, barely gets a chance to make an impression before the plot moves on.",
+  "There are flashes of promise from {s3}, but the direction never brings the different performances together."
+];
+// Large pool of audience-style comments (A)
+const CM_POS = [
+  "Just saw it, 10/10 would watch again tomorrow",
+  "Went in with low expectations and walked out genuinely impressed",
+  "The soundtrack alone is worth the price of admission",
+  "You can tell these people have history together — it shows",
+  "Casting was the best decision this movie made",
+  "{l} is unreal in this. Instant favorite",
+  "That ending hit me harder than I expected",
+  "Finally a movie that actually earns its runtime",
+  "Took my friends and we all walked out smiling",
+  "This is the kind of film I’ll rewatch every year",
+  "The chemistry between the leads is off the charts",
+  "I rarely cry in theaters. This got me",
+  "Peak cinema. Don’t sleep on this one",
+  "Everything just clicked. Rare feeling these days",
+  "Worth every penny of the ticket",
+  "{s2} was my favorite part — every scene with them had something extra",
+  "The supporting cast really surprised me, especially {s3}",
+  "{s4} deserved more screen time; they made every moment count",
+  "Loved how the whole ensemble felt like real people, not just background characters"
+];
+const CM_MID = [
+  "Mid. Next one please. Not bad, not great.",
+  "Honestly the trailer was better than the finished film",
+  "Has moments, but the second half drags",
+  "Fine for a rainy afternoon, nothing more",
+  "I wanted to love it more than I did",
+  "{l} is trying hard but the script holds them back",
+  "Pretty to look at, thin on substance",
+  "One great scene doesn’t make a great movie",
+  "Left the theater feeling… fine?",
+  "Not a waste of time, not a must-see either",
+  "The idea is better than the execution",
+  "Solid B-movie energy, for better or worse",
+  "{s2} had a couple of good moments, but the character never really goes anywhere",
+  "I liked {s3}, though the rest of the supporting roles felt underused",
+  "The ensemble is uneven — a few good performances, not enough chemistry"
+];
+const CM_NEG = [
+  "My dad fell asleep halfway through — that should tell you something",
+  "Who greenlit this??",
+  "I checked my watch three times. Never a good sign",
+  "The supporting cast deserved a better movie",
+  "Felt like a first draft that somehow got released",
+  "All the pieces are there but nothing connects",
+  "Walked out disappointed. Expected way more from this cast",
+  "Style over substance, and even the style is uneven",
+  "Hard to care about anyone in this story",
+  "A real missed opportunity",
+  "The ending undid most of the goodwill",
+  "I wanted my two hours back",
+  "Even {s2} couldn't make this character interesting",
+  "The supporting cast gets almost nothing to do, which is a waste of {s3}",
+  "Nobody in the ensemble seems to be in the same movie"
+];
+
+// Fragment pieces for procedural mixing (B)
+const FRAG_OPEN = [
+  "Honestly?", "Not gonna lie,", "Real talk:", "Okay so", "Listen,", "Ngl,", "Hot take:"
+];
+const FRAG_ACTOR = [
+  "{l} carried the whole thing", "{l} was the best part by far",
+  "the supporting cast saved it", "{l} deserved better material",
+  "everyone around {l} was phoning it in", "{l} is doing awards-bait work here"
+];
+const FRAG_FEEL = [
+  "I was locked in the whole time", "my mind wandered a lot",
+  "the crowd was dead silent in the best way", "people were laughing at the wrong parts",
+  "I teared up a little", "I almost walked out", "the theater was half empty and I get why"
+];
+const FRAG_END = [
+  "would watch again", "probably not a rewatch for me", "glad I saw it once",
+  "taking friends next weekend", "skipping the sequel if there is one",
+  "instant comfort movie", "one and done"
+];
+
+function fill(t, c) {
+  return t
+    .replace(/{t}/g, c.title)
+    .replace(/{d}/g, c.d.name)
+    .replace(/{l}/g, c.l.name)
+    .replace(/{s2}/g, c.s2?.name || "the second lead")
+    .replace(/{s3}/g, c.s3?.name || "the supporting cast")
+    .replace(/{s4}/g, c.s4?.name || "the ensemble");
+}
+
+function makeAudienceComments(c, audScore) {
+  // Pick tone from audience score
+  let pool, tone;
+  if (audScore >= 72) { pool = CM_POS; tone = "pos"; }
+  else if (audScore >= 45) { pool = CM_MID; tone = "mid"; }
+  else { pool = CM_NEG; tone = "neg"; }
+
+  const comments = new Set();
+
+  // 3 from the big static pools
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  for (let i = 0; i < 3 && i < shuffled.length; i++) {
+    comments.add(fill(shuffled[i], c));
+  }
+
+  // 2 procedurally mixed fragments
+  for (let i = 0; i < 2; i++) {
+    const parts = [];
+    if (Math.random() < 0.6) parts.push(R(FRAG_OPEN));
+    if (Math.random() < 0.7) parts.push(fill(R(FRAG_ACTOR), c));
+    if (Math.random() < 0.65) parts.push(R(FRAG_FEEL));
+    if (Math.random() < 0.55) parts.push(R(FRAG_END));
+    if (parts.length < 2) parts.push(fill(R(pool), c));
+    // lowercase join with light punctuation
+    let line = parts.join(" — ").replace(/^— /, "").replace(/ —$/, "");
+    line = line.charAt(0).toUpperCase() + line.slice(1);
+    if (!/[.!?]$/.test(line)) line += ".";
+    comments.add(line);
+  }
+
+  return [...comments].slice(0, 5);
+}
+
+const RATING_TXT = {
+  "G":     ["General Audiences", "All ages admitted"],
+  "PG":    ["Parental Guidance Suggested", "Some material may not be suitable for children"],
+  "PG-13": ["Parents Strongly Cautioned", "Some material may be inappropriate for children under 13"],
+  "R":     ["Restricted", "Under 17 requires accompanying parent or adult guardian"],
+  "NC-17": ["No One 17 and Under Admitted", "Adults only"]
+};
+
+function result() {
+  // Seed once per newly drafted movie. Every random decision made while building its
+  // result (scores, title, reviews, comments and visual copy) is reproducible from this seed.
+  const originalRandom = Math.random;
+  if (!S.resultSeed) {
+    const identity = S.picks.map(p => p ? p.name : "").join("|");
+    S.resultSeed = ((Date.now() >>> 0) ^ hashStr(identity)) >>> 0 || 1;
+  }
+  Math.random = rngFrom(S.resultSeed);
+  try { resultCore(S.resultSeed); }
+  finally { Math.random = originalRandom; }
+}
+
+function resultCore(seed) {
+  const [d, l, s2, s3, s4, g1, g2, r] = S.picks;
+  const people = [d, l, s2, s3, s4];
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const average = (values, weights) => values.reduce((sum, v, i) => sum + v * weights[i], 0) / weights.reduce((a,b) => a+b, 0);
+
+  // Fame and skill affect production scale and opening interest only — never movie quality.
+  const roleWeights = [1.15, 1.25, 1.0, 0.8, 0.65];
+  const fameIndex = average(people.map(p => p.fame || 5), roleWeights);
+  const skillIndex = average(people.map(p => p.skill || 5), roleWeights);
+  const openingInterest = Math.round(clamp(((fameIndex - 1) / 9) * 72 + ((skillIndex - 1) / 9) * 28, 0, 100));
+
+  // Genre familiarity is estimated from the source movie's genres/tags available in the game.
+  // It is intentionally not presented as a complete real-world filmography.
+  function genreFit(person, genre) {
+    const history = person.genreHistory || (person.fav ? [person.fav] : []);
+    const experience = person.genreExperience || {};
+    const directCount = Math.max(Number(experience[genre]) || 0, history.includes(genre) || person.fav === genre ? 1 : 0);
+    if (directCount > 0) return clamp(0.55 + Math.log2(directCount + 1) * 0.15, 0.65, 1);
+    const targetParent = parentOf(genre);
+    const relatedCount = Object.entries(experience).reduce((sum, [g, count]) => sum + (parentOf(g) === targetParent ? Number(count) || 0 : 0), 0);
+    if (relatedCount > 0) return clamp(0.48 + Math.log2(relatedCount + 1) * 0.12, 0.58, 0.9);
+    if (history.some(g => parentOf(g) === targetParent) || (person.fav && parentOf(person.fav) === targetParent)) return 0.62;
+    if (history.some(g => parentOf(g) === parentOf(g1.name) || parentOf(g) === parentOf(g2.name))) return 0.34;
+    return 0.12;
+  }
+  const fits = people.map(p => (genreFit(p, g1.name) * 0.68 + genreFit(p, g2.name) * 0.32));
+  const fitAvg = average(fits, roleWeights);
+  // Signed contribution: mismatches subtract points instead of merely missing a bonus.
+  const fitContribution = (fitAvg - 0.50) * 70;
+
+  // Chemistry uses known shared source credits and a small curated set of documented serious conflicts.
+  // Unknown relationships are neutral; they are not assumed to be friendly or hostile.
+  const conflictPairs = new Set([
+    ["angelina jolie", "brad pitt"].sort().join("|"),
+    ["amber heard", "johnny depp"].sort().join("|")
+  ]);
+  const pairKey = (a,b) => [String(a || "").trim().toLowerCase(), String(b || "").trim().toLowerCase()].sort().join("|");
+  let relationshipSignal = 0;
+  let relationshipEvidence = 0;
+  const relationshipDetails = [];
+  for (let i = 0; i < people.length; i++) {
+    for (let j = i + 1; j < people.length; j++) {
+      const a = people[i], b = people[j];
+      if (conflictPairs.has(pairKey(a.name,b.name))) {
+        relationshipSignal -= 2.5;
+        relationshipEvidence++;
+        relationshipDetails.push({label:`Relationship · ${a.name} & ${b.name}`, raw:-2.5});
+      } else if (a.from && b.from && a.from.toLowerCase() === b.from.toLowerCase()) {
+        relationshipSignal += 1;
+        relationshipEvidence++;
+        relationshipDetails.push({label:`Prior shared source credit · ${a.name} & ${b.name}`, raw:1});
+      }
+    }
+  }
+  const chemistryContribution = clamp(relationshipSignal * 1.5, -14, 10);
+  const relationshipScale = relationshipSignal ? chemistryContribution / (relationshipSignal * 1.5) : 0;
+  relationshipDetails.forEach(item => item.value = item.raw * 1.5 * relationshipScale);
+  const chemistry = clamp(5 + chemistryContribution / 2, 0, 10);
+
+  // Genres that commonly complement each other get a modest lift; unfamiliar or repetitive pairings can lose points.
+  const complementary = new Set([
+    "action|adventure","action|crime","action|thriller","action|science fiction","action|sci-fi",
+    "adventure|fantasy","adventure|science fiction","adventure|sci-fi","comedy|romance","comedy|family",
+    "crime|drama","crime|thriller","drama|romance","horror|mystery","horror|thriller","mystery|thriller",
+    "science fiction|thriller","sci-fi|thriller","animation|comedy","animation|family","fantasy|romance"
+  ]);
+  const gA = parentOf(g1.name).toLowerCase(), gB = parentOf(g2.name).toLowerCase();
+  const comboKey = [gA,gB].sort().join("|");
+  let comboContribution = complementary.has(comboKey) ? 5 : (gA === gB ? -2 : -1.5);
+  // Tags from the same parent family can still be a coherent choice, but repeating one family is less versatile.
+  if (g1.name === g2.name) comboContribution -= 2;
+  comboContribution = clamp(comboContribution, -5, 6);
+
+  // A balanced ensemble has reasonably compatible members without one role being a severe outlier.
+  const spread = Math.max(...fits) - Math.min(...fits);
+  const ensembleContribution = clamp((fitAvg - 0.50) * 8 + (0.35 - spread) * 7, -8, 7);
+
+  // Creative risk and the explicit quality roll are small compared with compatibility and relationships.
+  const novelty = 1 - fitAvg;
+  const riskContribution = (Math.random() * 2 - 1) * (1.5 + novelty * 2.0);
+  const randomContribution = Math.random() * 6 - 3;
+  const quality = Math.round(clamp(54 + fitContribution + chemistryContribution + comboContribution + ensembleContribution + riskContribution + randomContribution, 0, 100));
+  const qualityLabels = ["Disastrous","Catastrophic","Abysmal","Terrible","Very Poor","Poor","Weak","Flawed","Underwhelming","Mediocre","Mixed","Passable","Decent","Solid","Good","Very Good","Excellent","Outstanding","Masterpiece","Legendary"];
+  const qualityLevel = clamp(Math.ceil(quality / 5), 1, 20);
+  const qualityLabel = qualityLabels[qualityLevel - 1];
+  const weightTotal = roleWeights.reduce((sum, value) => sum + value, 0);
+  const roleNames = ["Director", "Lead actor", "2nd-billed actor", "3rd-billed actor", "4th-billed actor"];
+  const detailedBreakdown = [];
+  people.forEach((person, i) => {
+    const roleShare = roleWeights[i] / weightTotal;
+    const g1Value = (genreFit(person, g1.name) - 0.50) * 70 * roleShare * 0.68;
+    const g2Value = (genreFit(person, g2.name) - 0.50) * 70 * roleShare * 0.32;
+    detailedBreakdown.push({label:`${person.name} familiar with ${g1.name}`, value:g1Value});
+    detailedBreakdown.push({label:`${person.name} familiar with ${g2.name}`, value:g2Value});
+  });
+  if (relationshipDetails.length) {
+    relationshipDetails.forEach(item => detailedBreakdown.push({label:item.label, value:item.value}));
+  }
+  detailedBreakdown.push(
+    { label: `Genre pairing · ${g1.name} + ${g2.name}`, value: comboContribution },
+    { label: "Ensemble balance", value: ensembleContribution },
+    { label: "Creative risk", value: riskContribution },
+    { label: "Production variation", value: randomContribution }
+  );
+  // Hide negligible signals. Sort positives strongest-first, then negatives weakest-first
+  // so +++ is at the top and --- is at the very bottom.
+  const breakdown = detailedBreakdown.filter(item => Math.abs(item.value) >= 0.8).sort((a,b) => {
+    const ap = a.value > 0, bp = b.value > 0;
+    if (ap !== bp) return ap ? -1 : 1;
+    if (ap) return Math.abs(b.value) - Math.abs(a.value); // +++ ... +
+    return Math.abs(a.value) - Math.abs(b.value);         // − ... −−−
+  });
+
+  const primaryG = parentOf(g1.name); // Parent genre drives plot / font / budget lookups.
+  const gb = {Action:100,Comedy:42,Horror:22,"Sci-Fi":120,Drama:32,Romance:36,Thriller:45,Animation:110,Fantasy:95,Adventure:90,Crime:55}[primaryG] || 55;
+  const budgetFactor = 0.62 + fameIndex / 13 + skillIndex / 38;
+  const budget = Math.round((GB_TAG[g1.name] || gb) * budgetFactor * (0.90 + Math.random() * 0.20));
+  const rm = {G:1.08,PG:1.04,"PG-13":1.0,R:.88,"NC-17":.72}[r.name] || 1;
+  const mult = (0.22 + quality / 100 * 0.95) * (0.65 + openingInterest / 300) * rm * (0.82 + Math.random() * 0.36) * 1.55;
+  const box = Math.max(1, Math.round(budget * mult));
+  const criticNoise = rn(-8, 8);
+  const crit = Math.round(clamp(quality * 0.88 + comboContribution * 0.55 + criticNoise, 3, 98));
+  const ratingAppeal = ({G:4,PG:2,"PG-13":1,R:-2,"NC-17":-7}[r.name] || 0);
+  const aud = Math.round(clamp(quality * 0.82 + ratingAppeal + rn(-10, 10), 3, 98));
+
+  const titlePool = (TAG_NO[g1.name] && Math.random() < .65) ? TAG_NO[g1.name] : (NO[primaryG] || NO.Action);
+  const title = (Math.random() < .42 ? "The " : "") + R(AD) + " " + R(titlePool);
+
+  const c = {title, d, l, s2, s3, s4};
+
+  // Reviews lean more positive when chemistry score is high
+  const outlets = ["The Daily Reel","Cinema Weekly","Popcorn Post","Frame by Frame","ScreenVerse","Indie Focus"];
+  let reviewPool;
+  if (crit > 72 || (chemistryContribution >= 4 && crit > 52)) reviewPool = POS;
+  else if (crit > 45) reviewPool = MID;
+  else reviewPool = NEG;
+  // Select distinct templates first, so outlets cannot accidentally repeat the same review.
+  const reviewTemplates = [...reviewPool].sort(() => Math.random() - 0.5).slice(0, outlets.length);
+  const revs = outlets.map((o, i) => ({
+    o,
+    t: fill(reviewTemplates[i], c),
+    sc: Math.max(1, Math.min(10, Math.round(crit/10 + rn(-1,1))))
+  }));
+  const cms = makeAudienceComments(c, aud);
+
+  // Expanded verdict system
+  let verdict;
+  if (crit >= 90 && box > budget * 2.5) verdict = "Oscar frontrunner & box-office juggernaut";
+  else if (crit >= 85 && box > budget * 1.8) verdict = "Awards contender with real commercial heat";
+  else if (crit >= 80 && box > budget * 1.3) verdict = "Critical darling that also made money";
+  else if (crit >= 75 && box < budget * 0.9) verdict = "Beloved by critics, ignored by audiences";
+  else if (box > budget * 3.5) verdict = "Runaway blockbuster";
+  else if (box > budget * 2.2) verdict = "Major commercial hit";
+  else if (box > budget * 1.4) verdict = "Solidly profitable";
+  else if (box > budget * 1.05) verdict = "Modest success";
+  else if (box > budget * 0.75) verdict = "Barely broke even";
+  else if (crit < 35 && box < budget * 0.5) verdict = "Career-damaging flop";
+  else if (crit < 40) verdict = "Critical and commercial disappointment";
+  else if (box < budget * 0.6) verdict = "Box-office bomb";
+  else verdict = "Mixed bag — neither hit nor disaster";
+
+  // Awards and career consequences are simulated. Thresholds allow occasional
+  // meaningful outcomes without making them automatic or identical for everyone.
+  let movieCareerOutcome = "";
+  if (quality >= 96 && crit >= 92 && Math.random() < 0.22) movieCareerOutcome = R([
+    "Oscar-winning phenomenon — a rare, defining triumph",
+    "An awards-season sensation crowned by an Oscar win",
+    "A landmark film that takes home Academy Award glory"
+  ]);
+  else if (quality >= 85 && crit >= 80 && Math.random() < 0.30) movieCareerOutcome = R([
+    "Oscar-nominated prestige film",
+    "An awards-season contender earns major Oscar attention",
+    "A critically acclaimed film breaks into the Oscar conversation"
+  ]);
+  else if (quality >= 74 && crit >= 68 && Math.random() < 0.24) movieCareerOutcome = R([
+    "Major festival recognition puts the film on the map",
+    "A respected awards contender finds an enthusiastic critical following",
+    "A breakthrough at the festival circuit elevates the film's reputation"
+  ]);
+  else if (quality <= 18 && crit <= 25 && box < budget * 0.42 && Math.random() < 0.42) movieCareerOutcome = R([
+    "Career-threatening disaster — a potentially career-ending in-game failure",
+    "A notorious production disaster that could haunt careers for years",
+    "A spectacular critical and commercial collapse with lasting consequences"
+  ]);
+  else if (quality <= 30 && crit <= 38 && box < budget * 0.60) movieCareerOutcome = R([
+    "Infamous critical and commercial failure",
+    "A costly misfire becomes a cautionary industry story",
+    "A major flop damages the film's reputation"
+  ]);
+  else if (box >= budget * 3 && aud >= 70) movieCareerOutcome = R([
+    "Audience phenomenon and breakout hit",
+    "A crowd-pleasing sensation far exceeds expectations",
+    "A word-of-mouth hit turns into a box-office phenomenon"
+  ]);
+  else if (box >= budget * 2.2 && Math.random() < 0.78) movieCareerOutcome = R([
+    "Major commercial breakthrough",
+    "A strong box-office run makes the film an industry success story",
+    "A surprise hit delivers a substantial commercial win"
+  ]);
+
+  const careerOutcomes = people.map((person, i) => {
+    const individualFit = fits[i];
+    let outcome = "";
+    const isDirector = i === 0, isLead = i === 1, isSupporting = i >= 2;
+    const awardLabel = isDirector ? "directing" : (isLead ? "lead performance" : "supporting performance");
+    if ((movieCareerOutcome.startsWith("Oscar-winning") || movieCareerOutcome.includes("Oscar win") || movieCareerOutcome.includes("Academy Award")) && individualFit >= (isDirector ? 0.62 : 0.66) && Math.random() < (isDirector ? 0.48 : isLead ? 0.38 : 0.20)) {
+      outcome = isDirector ? "Oscar-winning director" : (isLead ? "Oscar-winning lead performance" : "Oscar-winning supporting performance");
+    } else if ((movieCareerOutcome.startsWith("Oscar-nominated") || movieCareerOutcome.startsWith("An awards-season") || movieCareerOutcome.startsWith("A critically acclaimed")) && individualFit >= 0.57 && Math.random() < (isDirector ? 0.55 : isLead ? 0.42 : 0.28)) {
+      outcome = isDirector ? "Oscar-nominated directing" : (isLead ? "Oscar-nominated lead performance" : "Oscar-nominated supporting performance");
+    } else if (quality <= 18 && crit <= 25 && box < budget * 0.42 && individualFit < 0.38 && Math.random() < 0.28) {
+      outcome = R(isDirector
+        ? ["Potentially career-ending directing disaster", "A career-threatening directorial failure"]
+        : isLead
+          ? ["A potentially career-ending lead-role failure", "A disastrous starring performance with lasting fallout"]
+          : ["A career-threatening supporting-role misfire", "A disastrous performance that could close doors"]);
+    } else if (quality <= 34 && crit <= 40 && box < budget * 0.68 && individualFit < 0.46 && Math.random() < 0.70) {
+      outcome = R(isDirector
+        ? ["Directing reputation takes a serious hit", "Future projects face tougher scrutiny", "A major setback for the director's credibility"]
+        : isLead
+          ? ["Lead-star reputation takes a hit", "A high-profile flop puts future leading roles at risk", "Casting confidence in the lead takes a knock"]
+          : ["Supporting-career setback", "Fewer prominent offers may follow", "A poorly received role stalls their momentum"]);
+    } else if (quality >= 78 && crit >= 72 && individualFit >= 0.58 && Math.random() < (isDirector ? 0.32 : isLead ? 0.34 : 0.24)) {
+      outcome = R(isDirector
+        ? ["A career-defining directing credit", "The director earns serious industry respect", "A strong showcase raises the director's profile"]
+        : isLead
+          ? ["A breakout lead performance", "A star-making turn attracts new attention", "The lead delivers a performance that raises their profile"]
+          : ["A scene-stealing supporting performance", "A standout supporting turn earns notice", "A memorable role brings stronger offers"]);
+    } else if (box >= budget * 1.8 && openingInterest >= 48 && (!isSupporting || individualFit >= 0.48) && Math.random() < 0.55) {
+      outcome = R(isDirector
+        ? ["In-demand director after a commercial success", "A hit strengthens the director's negotiating power"]
+        : isLead
+          ? ["Lead star's commercial value rises", "A hit makes the lead more bankable"]
+          : individualFit >= 0.48
+            ? ["Higher-profile supporting offers", "A successful release improves their visibility", "Casting directors take notice after the hit"]
+            : []);
+    } else if (quality >= 68 && individualFit >= 0.72 && Math.random() < 0.20) {
+      outcome = R(isDirector
+        ? ["A respected addition to the director's résumé", "A promising step toward more ambitious projects"]
+        : isLead
+          ? ["A well-received lead role strengthens their résumé", "A solid performance earns new industry confidence"]
+          : ["A strong supporting credit", "A well-received role adds useful momentum"]);
+    }
+    return {name:person.name, outcome};
+  }).filter(item => item.outcome);
+
+  const out = {
+    title, g: g1.name + " / " + g2.name, r: r.name,
+    budget, box, crit, aud, verdict, seed,
+    quality, qualityLevel, qualityLabel, openingInterest,
+    breakdown: breakdown.map(item => ({label:item.label, value:Math.round(item.value*100)/100})),
+    movieCareerOutcome, careerOutcomes,
+    d: d.name, l: l.name, s: [s2,s3,s4].map(p => p.name).join(", ")
+  };
+  hist.unshift(out);
+  hist = hist.slice(0, 12);
+  try { localStorage.setItem("bditwhist", JSON.stringify(hist)); } catch(e){}
+
+  const money = n => n >= 1000 ? "$" + (n/1000).toFixed(2) + "B" : "$" + n + "M";
+  const basePlot = PL_LONG[primaryG] || PL_LONG.Action;
+
+  // Plot text just uses the actor's name
+  function tag(p) {
+    return p.name;
+  }
+
+  // Plot: story text with actors revealed one-by-one (Lead → 2nd → 3rd → 4th)
+  function weaveActors(plot, lead, second, third, fourth) {
+    const sentences = plot.match(/[^.!?]+[.!?]+/g) || [plot];
+    const chunks = [];
+    const size = Math.ceil(sentences.length / 4);
+    for (let i = 0; i < 4; i++) {
+      chunks.push(sentences.slice(i * size, (i + 1) * size).join(" ").trim());
+    }
+    while (chunks.length < 4) chunks.push("");
+
+    let result = "";
+    if (chunks[0]) result += chunks[0].replace(/\.$/, "") + ` (${tag(lead)}). `;
+    if (chunks[1]) result += chunks[1].replace(/\.$/, "") + ` (${tag(second)}). `;
+    if (chunks[2]) result += chunks[2].replace(/\.$/, "") + ` (${tag(third)}). `;
+    if (chunks[3]) result += chunks[3].replace(/\.$/, "") + ` (${tag(fourth)}).`;
+    return result.trim();
+  }
+
+  const plotExtensions = {
+    Action: "With the clock running down, every alliance becomes a gamble and every shortcut comes with a cost. The final choice will force the team to decide what they are truly willing to sacrifice.",
+    Comedy: "Their attempts to fix one problem only create three more, exposing old insecurities beneath the jokes. By the end, they may discover that the mess they made is exactly what they needed.",
+    Horror: "Each new discovery makes the danger feel more personal, and the survivors begin to suspect that the haunting is reacting to their own buried guilt. Escape may require facing the one truth they have all refused to say aloud.",
+    "Sci-Fi": "As the evidence accumulates, the crew must question whether their memories can be trusted and whether the signal is a warning, an invitation, or a message from a possible future. Their answer could change more than the mission itself.",
+    Drama: "Small gestures and difficult conversations slowly reveal how deeply the past has shaped each decision. When the family must finally choose between protecting its secrets and telling the truth, no one can remain untouched.",
+    Romance: "Just as they begin to lower their guard, a long-kept secret threatens the fragile trust between them. They must decide whether love is worth risking the comfortable lives they have carefully arranged.",
+    Thriller: "A seemingly minor clue connects the case to a conspiracy far closer to home than expected. With allies disappearing and the evidence turning against them, the only chance to expose the truth may be to risk becoming part of the story.",
+    Animation: "The journey brings unexpected sacrifices and reveals that the kingdom's greatest strength was never its magic, but the people who choose to stand together. Their last challenge will test whether that lesson can truly change the world.",
+    Fantasy: "An ancient bargain begins to unravel, forcing unlikely allies to confront the cost of the legends they inherited. The fate of both worlds rests on a choice no prophecy has been able to predict.",
+    Adventure: "Every milestone reveals a new piece of the mystery and tests the fragile trust between the travelers. When the destination finally comes into view, the greatest discovery may not be the prize they set out to find.",
+    Crime: "A quiet betrayal turns the operation into a desperate contest of leverage, loyalty, and timing. To make it out alive, the crew must decide who controls the final move—and what survival will cost them afterward."
+  };
+  const expandedPlot = `${basePlot} ${plotExtensions[primaryG] || plotExtensions.Drama}`;
+  const fullPlot = weaveActors(expandedPlot, l, s2, s3, s4);
+
+  // ----- Themed look for this movie -----
+  const T = THEMES[THEME_OF[primaryG] || "drama"];
+  const themeKey = THEME_OF[primaryG] || "drama";
+  const tfo = TAG_FONT[g1.name] || TAG_FONT[g2.name] || null;
+  const fontFam = tfo ? tfo.f : T.font;
+  const fsMul = tfo ? tfo.fs : T.fs;
+  const tt = tfo ? tfo.tt : T.tt;
+  const ls = tfo ? tfo.ls : T.ls;
+  const baseSize = title.length > 24 ? 27 : title.length > 16 ? 34 : 43;
+  const tsize = Math.round(baseSize * fsMul);
+  const h3s = Math.min(26, Math.max(18, Math.round(20 * fsMul)));
+  const tagline = R(TAGLINES[themeKey]);
+  const rtxt = RATING_TXT[r.name] || RATING_TXT["PG-13"];
+  const stampText = STAMP[verdict] || "Released";
+  const good = box > budget;
+  const stampCol = good ? "#3ecf7a" : "#ff6b5e";
+  const stars5 = sc => { const n = Math.max(1, Math.min(5, Math.round(sc / 2))); return "★".repeat(n) + "☆".repeat(5 - n); };
+  applyTheme(T);
+
+  document.getElementById("app").innerHTML = `
+    <div class="res" style="--tf:Georgia,'Times New Roman',serif;--h3s:20px">
+      <div class="pwrap">
+        <div class="pcard">
+          ${posterArt(T, title)}
+          <div class="pscrim"></div>
+          <div class="pov">
+            <div class="ptop">
+              <div class="pcast">
+                <div class="plead">${l.name}</div>
+                <div class="psup"><span>${s2.name}</span><span>${s3.name}</span><span>${s4.name}</span></div>
+              </div>
+            </div>
+            <div class="pmid">
+              <div class="ptitle" style="font-family:${fontFam};font-size:${(tsize / 4).toFixed(2)}cqw;letter-spacing:${ls};text-transform:${tt};color:#fff;font-weight:${T.w || 400};font-style:${T.it ? "italic" : "normal"};text-shadow:0 2px 0 rgba(0,0,0,.45),0 0 26px ${T.ac}">${title}</div>
+              <div class="ptag">${tagline}</div>
+              <p class="psyn">${fullPlot}</p>
+            </div>
+            <div class="pbot">
+              <div class="pdir">Directed by <b>${d.name}</b></div>
+              <div class="pgen">${g1.name} · ${g2.name}</div>
+              <div class="prating" aria-label="MPA film rating ${r.name}"><div class="rtag">${r.name}</div><div class="rtxt"><b>${rtxt[0]}</b><span>${rtxt[1]}</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="pstamp" style="--sc:${stampCol}">${stampText}</div>
+      </div>
+
+
+      <div class="rcard">
+        <div class="quality-head">
+          <div><h3>Movie quality</h3><div class="quality-sub">100-point creative quality score</div></div>
+          <div style="text-align:right"><div class="quality-level">${quality}/100</div><div class="quality-sub">${qualityLabel} · Level ${qualityLevel}/20</div></div>
+        </div>
+        <div class="quality-sub">Quality comes from genre experience, compatibility, relationships, ensemble balance and creative choices — not fame or skill.</div>
+      </div>
+
+      <div class="rcard">
+        <h3>Detailed score breakdown</h3>
+        ${movieCareerOutcome || careerOutcomes.length ? `<div style="margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--bd)">
+          <div class="quality-sub" style="margin-bottom:5px">INDUSTRY & CAREER CONSEQUENCES · SIMULATED</div>
+          ${movieCareerOutcome ? `<p class="vline" style="margin:0 0 6px">${movieCareerOutcome}</p>` : ""}
+          ${careerOutcomes.map(item => `<div class="breakdown-row"><span>${item.name}</span><b style="text-align:right;max-width:58%">${item.outcome}</b></div>`).join("")}
+        </div>` : ""}
+        ${breakdown.map(item => {
+          const value = item.value;
+          const magnitude = Math.abs(value);
+          const symbols = magnitude < 2.5 ? (value > 0 ? "+" : "−") : (magnitude < 5 ? (value > 0 ? "++" : "−−") : (value > 0 ? "+++" : "−−−"));
+          const cls = value > 0 ? "pos" : "neg";
+          return `<div class="breakdown-row"><span>${item.label}</span><b class="impact ${cls}" aria-label="${value > 0 ? "Positive" : "Negative"} influence">${symbols}</b></div>`;
+        }).join("")}
+        <div class="quality-sub">Symbols show relative influence only; exact point values are hidden. Fame and skills affect production scale and opening interest, not this score.</div>
+      </div>
+
+      <div class="rcard">
+        <h3>Box office</h3>
+        <div class="money">
+          <div><small>Budget</small><b>${money(budget)}</b></div>
+          <div><small>Worldwide gross</small><b>${money(box)}</b></div>
+          <div class="${good ? "pos" : "neg"}"><small>${good ? "Profit" : "Loss"}</small><b>${money(Math.abs(box - budget))}</b></div>
+        </div>
+        <div class="meter"><span>Critics</span><i><u style="width:${crit}%"></u></i><b>${crit}%</b></div>
+        <div class="meter"><span>Audience</span><i><u style="width:${aud}%"></u></i><b>${aud}%</b></div>
+        <div class="meter"><span>Opening interest</span><i><u style="width:${openingInterest}%"></u></i><b>${openingInterest}%</b></div>
+        <p class="vline">${verdict}</p>
+      </div>
+
+      <div class="rv">
+        ${revs.map(v => `<div class="q"><span class="st">${stars5(v.sc)}</span>${v.t}<small>${v.o}, ${v.sc}/10</small></div>`).join("")}
+      </div>
+
+      <div class="rcard">
+        <h3>Audience comments</h3>
+        <div class="bubs">${cms.map(t => `<div class="bub">${t}</div>`).join("")}</div>
+      </div>
+
+      <button class="btn" onclick="start()">Draft another movie</button>
+    </div>`;
+  // Save the complete rendered result so a past entry can reopen the exact same card.
+  if (hist.length) {
+    hist[0].html = document.getElementById("app").innerHTML;
+    try { localStorage.setItem("bditwhist", JSON.stringify(hist)); } catch(e){}
+  }
+  window.scrollTo({top: 0});
+  drawHist();
+}
+
+
+function drawHist() {
+  const host = document.getElementById("hist");
+  host.innerHTML = hist.length
+    ? hist.map((h, i) => `<button class="hist-item" type="button" onclick="openPast(${i})"><span><b>${escapeHTML(h.title)}</b><small>${escapeHTML(h.g || "Movie")}</small></span><span class="hist-meta">${escapeHTML(h.verdict || "Past result")} · ${Number(h.crit)||0}%<small>Click to reopen</small></span></button>`).join("")
+    : "<div>Nothing yet.</div>";
+}
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>\"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+}
+function openPast(index) {
+  const item = hist[index];
+  if (!item) return;
+  if (item.html) {
+    document.getElementById("app").innerHTML = item.html;
+  } else {
+    document.getElementById("app").innerHTML = `<div class="rcard"><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.g)} · ${escapeHTML(item.r)}</p><p>${escapeHTML(item.verdict)}</p><div class="money"><div><small>Budget</small><b>$${item.budget}M</b></div><div><small>Worldwide gross</small><b>$${item.box}M</b></div><div><small>Critics</small><b>${item.crit}%</b></div></div><p>Full card wasn't saved for this older history entry. New results can be reopened in full.</p><button class="btn" onclick="start()">Draft another movie</button></div>`;
+  }
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+(async () => {
+  try {
+    await loadPool();
+    drawHist();
+    start();
+  } catch (err) {
+    document.getElementById("app").innerHTML = `
+      <div class="box" style="color:var(--ac)">
+        <h3>Could not load movies</h3>
+        <p>Check your internet or API key. Error: ${err.message}</p>
+      </div>`;
+  }
+})();
+</script>
+</body>
+</html>
